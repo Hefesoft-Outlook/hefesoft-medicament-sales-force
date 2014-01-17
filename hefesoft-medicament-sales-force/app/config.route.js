@@ -52,6 +52,17 @@
                         rol: ['Identificados']
                     }
                 }
+            }, {
+                url: '/ciclos',
+                config: {
+                    title: 'ciclos',
+                    templateUrl: 'app/admin/ciclos.html',
+                    settings: {
+                        nav: 3,
+                        content: '<i class="icon-lock"></i> ciclos',
+                        rol: ['No_identificados']
+                    }
+                }
             }
         ];
     }

@@ -3,6 +3,7 @@
     
     var app = angular.module('app', [
         // Angular modules 
+        'ngCookies',
         'ngAnimate',        // animations
         'ngRoute',          // routing
         'ngSanitize',       // sanitizes html bindings (ex: sidebar.js)
@@ -16,7 +17,8 @@
     ]);
     
     // Handle routing errors and success events
-    app.run(['$route',  function ($route) {
-            // Include $route to kick start the router.
-        }]);        
+    app.run(['$route', '$rootScope', function ($route, $rootScope, $cookieStore) {
+        $rootScope.azureURL = 'https://hefesoft-medicament-sales-force.azure-mobile.net/';
+        $rootScope.azureAppKey = 'KPtpYTfuLvrhWBkSCcxADFVOmUNleG14';
+    }]);
 })();

@@ -46,7 +46,8 @@
                     templateUrl: 'app/autenticacion/login.html',
                     settings: {
                         nav: 3,
-                        content: '<i class="icon-lock"></i> login'
+                        content: '<i class="icon-lock"></i> login',
+                        rol: ['No_identificados']
                     }
                 }
             }

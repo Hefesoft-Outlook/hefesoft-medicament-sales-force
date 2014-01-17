@@ -1,5 +1,5 @@
 ﻿                    <script type="text/ng-template" id="myModalContent.html">
-                        <form>
+                        <form name="formLogin" class="css-form" novalidate>
                         <div class="modal-header">
                             <h3>Ingreso de usuarios</h3>
                         </div>
@@ -15,7 +15,7 @@
                             </div>
                         </div>
                         <div class="modal-footer">
-                            <button type="submit" class="btn btn-primary" ng-click="ok()">Ingresar</button>
+                            <button type="submit" ng-disabled="formLogin.$invalid" class="btn btn-primary" ng-click="ok()">Ingresar</button>                            
                             <button class="btn btn-warning" ng-click="cancel()">Cancelar</button>
                         </div>
                         </form>

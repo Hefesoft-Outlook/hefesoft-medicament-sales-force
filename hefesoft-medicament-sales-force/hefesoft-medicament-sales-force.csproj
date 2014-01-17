@@ -60,6 +60,8 @@
     <Content Include="app\admin\admin.html" />
     <Content Include="app\admin\admin.js" />
     <Content Include="app\app.js" />
+    <Content Include="app\autenticacion\login.html" />
+    <Content Include="app\autenticacion\login.js" />
     <Content Include="app\common\bootstrap\bootstrap.dialog.js" />
     <Content Include="app\common\common.js" />
     <Content Include="app\common\logger.js" />

@@ -39,6 +39,16 @@
                         content: '<i class="icon-lock"></i> Admin'
                     }
                 }
+            },{
+                url: '/autenticacion',
+                config: {
+                    title: 'login',
+                    templateUrl: 'app/autenticacion/login.html',
+                    settings: {
+                        nav: 3,
+                        content: '<i class="icon-lock"></i> login'
+                    }
+                }
             }
         ];
     }

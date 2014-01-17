@@ -1,0 +1,22 @@
+﻿                    <script type="text/ng-template" id="myModalContent.html">
+                        <form>
+                        <div class="modal-header">
+                            <h3>Ingreso de usuarios</h3>
+                        </div>
+                        <div class="modal-body">
+                            <div class="container">
+                                <div class="form-signin">                                    
+                                    <input type="email" ng-model="usuario.email" class="input-block-level" placeholder="Correo electronico" required>
+                                    <input type="password" ng-model="usuario.clave" class="input-block-level" placeholder="Clave" required>
+                                    <label class="checkbox">
+                                        <input type="checkbox" ng-model="usuario.Recuerdame" value="remember-me"> Recordarme
+                                    </label>                                    
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-primary" ng-click="ok()">Ingresar</button>
+                            <button class="btn btn-warning" ng-click="cancel()">Cancelar</button>
+                        </div>
+                        </form>
+                    </script>

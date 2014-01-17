@@ -1,0 +1,37 @@
+﻿
+<script type="text/ng-template" id="registrarse.html">
+ 
+       
+ <form name="form" class="css-form" novalidate>
+    
+     <div class="modal-header">
+          <h3>Registro de nuevo usuario</h3>
+     </div>   
+    
+     <div class="modal-body">
+        <div class="container">
+            <div class="form-signin">                                    
+                <input type="email" ng-model="usuario.email" class="input-block-level" placeholder="Correo electronico" required>
+                <input type="password" ng-model="usuario.clave" class="input-block-level" placeholder="Clave" required>                
+            </div>
+        </div>
+        </div>
+    
+     <div class="modal-footer">
+                            <button type="submit" class="btn btn-primary" ng-click="ok()" ng-disabled="form.$invalid" >Registrarse</button>
+                            <button class="btn btn-warning" ng-click="cancel()">Cancelar</button>
+     </div>         
+  </form>
+    
+     <style type="text/css">
+      .css-form input.ng-invalid.ng-dirty {
+        background-color: #FA787E;
+      }
+    
+      .css-form input.ng-valid.ng-dirty {
+        background-color: #78FA89;
+      }
+    </style>
+
+
+</script>

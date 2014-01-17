@@ -16,14 +16,6 @@
             common.activateController([], controllerId)
                 .then(function () {
 
-                    var usuario = new Object();
-                    usuario.email = "futbolito152@gmail.com";
-                    usuario.clave = "iguazo26";
-                    usuario.roles = "identificado,administrador";
-
-                    AzureMobileClient.addData('Usuarios', usuario);
-                    log('Login activado');
-
                 });
         }
     }

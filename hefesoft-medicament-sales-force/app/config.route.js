@@ -26,7 +26,8 @@
                     title: 'dashboard',
                     settings: {
                         nav: 1,
-                        content: '<i class="icon-dashboard"></i> Dashboard'
+                        content: '<i class="icon-dashboard"></i> Dashboard',
+                        rol: ['Identificados']
                     }
                 }
             }, {
@@ -36,7 +37,8 @@
                     templateUrl: 'app/admin/admin.html',
                     settings: {
                         nav: 2,
-                        content: '<i class="icon-lock"></i> Admin'
+                        content: '<i class="icon-lock"></i> Admin',
+                        rol: ['Identificados']
                     }
                 }
             },{
@@ -47,7 +49,7 @@
                     settings: {
                         nav: 3,
                         content: '<i class="icon-lock"></i> login',
-                        rol: ['No_identificados']
+                        rol: ['Identificados']
                     }
                 }
             }

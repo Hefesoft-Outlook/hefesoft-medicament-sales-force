@@ -67,6 +67,8 @@
 
                             var roles = JSON.parse(resultado[0].roles);
                             common.sidebar.reloadMenu(roles);
+
+                            $modalInstance.dismiss('ok');
                         }
                     },
                     function (error) {

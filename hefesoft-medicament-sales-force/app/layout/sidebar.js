@@ -3,10 +3,12 @@
     
     var controllerId = 'sidebar';
     angular.module('app').controller(controllerId,
-        ['$route', 'config', 'routes', sidebar]);
+        ['common', '$route', 'config', 'routes', sidebar]);
 
-    function sidebar($route, config, routes) {
+    function sidebar(common, $route, config, routes) {
         var vm = this;
+
+        common.sidebar = this;
 
         vm.isCurrent = isCurrent;
 

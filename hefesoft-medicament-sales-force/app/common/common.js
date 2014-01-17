@@ -43,6 +43,7 @@
             logger: logger, // for accessibility
             textContains: textContains,
             $cookieStore: $cookieStore,
+            sidebar : null,
             Usuario_Logueado: null
         };
 

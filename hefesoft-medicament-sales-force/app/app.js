@@ -3,6 +3,7 @@
     
     var app = angular.module('app', [
         // Angular modules 
+        'kendo.directives',
         'ngCookies',
         'ngAnimate',        // animations
         'ngRoute',          // routing

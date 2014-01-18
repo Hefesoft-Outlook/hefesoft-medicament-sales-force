@@ -80,6 +80,7 @@
     <Content Include="app\layout\topnav.html" />
     <Content Include="app\layout\topnav.js" />
     <Content Include="app\layout\widgetheader.html" />
+    <Content Include="app\services\admin\datacontext.js" />
     <Content Include="app\services\azureMobileServices.js" />
     <Content Include="app\services\datacontext.js" />
     <Content Include="app\services\directives.js" />
@@ -255,6 +256,8 @@
     <Content Include="Content\kendo\2013.3.1119\Uniform\slider-v.gif" />
     <Content Include="Content\kendo\2013.3.1119\Uniform\sprite.png" />
     <Content Include="Content\kendo\2013.3.1119\Uniform\sprite_2x.png" />
+    <Content Include="Content\kendo\fromkendoWebPage\kendo.common.min.css" />
+    <Content Include="Content\kendo\fromkendoWebPage\kendo.silver.min.css" />
     <Content Include="Content\site.css" />
     <Content Include="Content\styles.css" />
     <Content Include="Content\toastr.css" />
@@ -696,6 +699,8 @@
     <Content Include="Scripts\kendo\2013.3.1119\kendo.view.min.js" />
     <Content Include="Scripts\kendo\2013.3.1119\kendo.web.min.js" />
     <Content Include="Scripts\kendo\2013.3.1119\kendo.window.min.js" />
+    <Content Include="Scripts\kendo\fromInternet\kendo.all.min.js" />
+    <Content Include="Content\kendo\fromkendoWebPage\kendo.mobile.all.min.css" />
     <Content Include="Scripts\kendo\kendo.all.min.js" />
     <Content Include="Scripts\MobileServices.Web-1.1.0.min.js" />
     <Content Include="Scripts\moment.js" />
@@ -1133,6 +1138,10 @@
     <Content Include="Scripts\kendo\2013.3.1119\cultures\kendo.culture.am.min.js.map" />
     <Content Include="Scripts\kendo\2013.3.1119\cultures\kendo.culture.af-ZA.min.js.map" />
     <Content Include="Scripts\kendo\2013.3.1119\cultures\kendo.culture.af.min.js.map" />
+    <Content Include="Content\font\DroidSansWeb.woff" />
+    <Content Include="Scripts\kendo\fromInternet\kendo.all.min.js.map" />
+    <Content Include="Content\font\kendoui.woff" />
+    <Content Include="Content\font\Roboto-LightWeb.woff" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

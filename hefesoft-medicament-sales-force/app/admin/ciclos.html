@@ -5,7 +5,20 @@
                 <div class="widget wviolet">
                     <div data-cc-widget-header title="{{vm.title}}"></div>
                     <div class="widget-content user">
-                        <h3>TODO: Implement Admin Features</h3>
+                        <div class="demo-section">
+
+                            <div id="grid" kendo-grid k-data-source="vm.ciclosDataSource"
+                                 k-options="{{vm.gridOpts}}"                                
+                                 >
+
+                                <!--k-on-change="vm.filaSeleccionada = data"
+                                k-on-remove="vm.remove(kendoEvent)"
+                                k-on-edit="vm.edit(kendoEvent)"
+                                k-on-save="vm.save(kendoEvent)"
+                                k-on-cancel="vm.cancel(kendoEvent)"-->
+
+                            </div>
+                        </div>                        
                     </div>
                     <div class="widget-foot">
                         <div class="clearfix"></div>

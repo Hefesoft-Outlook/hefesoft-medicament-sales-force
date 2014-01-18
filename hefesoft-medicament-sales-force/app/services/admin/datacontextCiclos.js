@@ -64,6 +64,15 @@
 
         function dataSourceCreate(options) {
             var item = options.data;
+
+            item.diaFechaInicial = item.fechaInicial.getFullYear();
+            item.mesFechaInicial = item.fechaInicial.getMonth()+1;
+            item.anioFechaInicial = item.fechaInicial.getDate();
+
+            item.diaFechaFinal = item.fechaFinal.getFullYear();
+            item.mesFechaFinal = item.fechaFinal.getMonth()+1;
+            item.anioFechaFinal = item.fechaFinal.getDate();
+
             AzureMobileClient.addDataAsync("Ciclos", item).then(
                 function(result){
                         options.success();
@@ -89,8 +98,6 @@
         function dataSourceDestroy(options) {
             var item = new Object();
             item.id = options.data.id;
-
-
 
             AzureMobileClient.deleteDataAsync("Ciclos", item).then(
                 function (result) {

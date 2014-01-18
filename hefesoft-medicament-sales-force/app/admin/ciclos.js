@@ -1,21 +1,22 @@
 ﻿(function () {
     'use strict';
     var controllerId = 'ciclos';
-    angular.module('app').controller(controllerId, ['common', '$scope', 'datacontextAdmin', ciclos]);
+    angular.module('app').controller(controllerId, ['common', '$scope', 'datacontextCiclos', ciclos]);
 
-    function ciclos(common, $scope, datacontextAdmin) {
+    function ciclos(common, $scope, datacontextCiclos) {
         var getLogFn = common.logger.getLogFn;
         var log = getLogFn(controllerId);
 
         var vm = this;
         vm.title = 'Ciclos';
         vm.filaSeleccionada = null;
-        vm.ciclosDataSource = datacontextAdmin.ciclosDataSource;
+        vm.ciclosDataSource = datacontextCiclos.ciclosDataSource;
 
         
 
         vm.columns = [            
             { hidden: true, field: "id" },
+            { field: "diasCiclo", title: "Dias de Ciclo" },
             { field: "fechaInicial", title: "Fecha Inicial", format: "{0: dd-MM-yyyy}" },
             { field: "fechaFinal", title: "Fecha Final", format: "{0: dd-MM-yyyy}" },
             { field: "activo", title: "Activo" },
@@ -33,13 +34,11 @@
                 mode: "popup",
                 //createAt: "top"
             },
-            mobile: "phone",
+            mobile: true,
             height: "24em",
             resizable: true,
             toolbar: [
-                { name: "create" },
-                { name: "save" },
-                { name: "cancel" }
+                { name: "create" }                
             ]        
         };
 

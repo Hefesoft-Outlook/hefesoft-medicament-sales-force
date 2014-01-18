@@ -6,6 +6,7 @@
         ['common', '$rootScope', constructor]);
 
     function constructor(common, $rootScope) {
+        var $q = common.$q;
         var $cookieStore = common.$cookieStore;
         var azureMobileClient = {};
         azureMobileClient.isLoggedIn = false;
@@ -50,13 +51,54 @@
             return azureMobileClient.prepService(tableName).insert(data);
         };
 
+        azureMobileClient.addDataAsync = function (tableName, data) {
+            var deferred = $q.defer();
+            azureMobileClient.prepService(tableName).insert(data)
+            .done(function (result) {
+                deferred.resolve(result);
+            }, function (err) {
+                deferred.reject(err);
+            });
+
+           return deferred.promise;
+        };
+
         azureMobileClient.updateData = function (tableName, data) {
             return azureMobileClient.prepService(tableName).update(data);
+        };
+
+        azureMobileClient.updateDataAsync = function (tableName, data) {
+            var deferred = $q.defer();
+            azureMobileClient.prepService(tableName).update(data)
+            .done(function (result) {
+                deferred.resolve(result);
+            }, function (err) {
+                deferred.reject(err);
+            });
+
+            return deferred.promise;
+        };
+
+        azureMobileClient.deleteDataAsync = function (tableName, data) {
+
+            var deferred = $q.defer();
+            azureMobileClient.prepService(tableName).del(data)
+            .done(function (result) {
+                deferred.resolve(result);
+            }, function (err) {
+                deferred.reject(err);
+            });
+
+            return deferred.promise;
+
+
         };
 
         azureMobileClient.deleteData = function (tableName, data) {
             return azureMobileClient.prepService(tableName).del(data);
         };
+
+
 
         // Gets the currentUser back from the cookieStore if the currentUser object is null
         azureMobileClient.getUser = function () {

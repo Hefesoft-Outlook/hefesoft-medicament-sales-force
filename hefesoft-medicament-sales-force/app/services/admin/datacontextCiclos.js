@@ -1,11 +1,11 @@
 (function () {
     'use strict';
 
-    var serviceId = 'datacontextAdmin';
+    var serviceId = 'datacontextCiclos';
     angular.module('app').factory(serviceId,
-        ['common', 'AzureMobileClient', datacontextAdmin]);
+        ['common', 'AzureMobileClient', datacontextCiclos]);
 
-    function datacontextAdmin(common, AzureMobileClient) {
+    function datacontextCiclos(common, AzureMobileClient) {
         var $q = common.$q;
 
         var dataSource = new kendo.data.DataSource({
@@ -21,6 +21,7 @@
                     fields: {
                         id: { editable: false, validation: { required: false } },
                         fechaInicial: { type: "date", validation: { required: true } },
+                        diasCiclo: { type: "number", validation: { required: true } },
                         fechaFinal: { type: "date", validation: { required: true } },
                         activo: { type: "boolean" },
                     }
@@ -52,9 +53,7 @@
 
         function dataSourceRead(options) {
             getCiclos().then(
-                        function (result) {
-                            var item = [{ id: 1, fechaInicial: new Date(), fechaFinal: new Date(), activo: true }];
-                            result = item;
+                        function (result) {                            
                             options.success(result);
                         },
                         function (error) {
@@ -65,17 +64,42 @@
 
         function dataSourceCreate(options) {
             var item = options.data;
-            options.success();
+            AzureMobileClient.addDataAsync("Ciclos", item).then(
+                function(result){
+                        options.success();
+                    },
+                function (err) {
+                     options.error();
+                    }
+                );            
         };
 
         function dataSourceUpdate(options) {
-            var item = options.data;
-            options.success();
+            var item = options.data;            
+            AzureMobileClient.updateDataAsync("Ciclos", item).then(
+                function (result) {
+                    options.success();
+                },
+                function (err) {
+                    options.error();
+                }
+                );
         };
 
         function dataSourceDestroy(options) {
-            var item = options.data;
-            options.success();
+            var item = new Object();
+            item.id = options.data.id;
+
+
+
+            AzureMobileClient.deleteDataAsync("Ciclos", item).then(
+                function (result) {
+                    options.success();
+                },
+                function (err) {
+                    options.error();
+                }
+                );
         };
     }
 })();

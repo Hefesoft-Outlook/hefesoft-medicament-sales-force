@@ -63,6 +63,17 @@
                         rol: ['No_identificados']
                     }
                 }
+            }, {
+                url: '/medicos',
+                config: {
+                    title: 'medicos',
+                    templateUrl: 'app/admin/medicos.html',
+                    settings: {
+                        nav: 4,
+                        content: '<i class="icon-lock"></i> medicos',
+                        rol: ['No_identificados']
+                    }
+                }
             }
         ];
     }

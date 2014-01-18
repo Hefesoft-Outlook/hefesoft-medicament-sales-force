@@ -59,6 +59,8 @@
   <ItemGroup>
     <Content Include="app\admin\admin.html" />
     <Content Include="app\admin\admin.js" />
+    <Content Include="app\admin\farmacias.html" />
+    <Content Include="app\admin\farmacias.js" />
     <Content Include="app\admin\medicos.html" />
     <Content Include="app\admin\medicos.js" />
     <Content Include="app\admin\ciclos.html" />
@@ -82,6 +84,7 @@
     <Content Include="app\layout\topnav.html" />
     <Content Include="app\layout\topnav.js" />
     <Content Include="app\layout\widgetheader.html" />
+    <Content Include="app\services\admin\datacontextFarmacias.js" />
     <Content Include="app\services\admin\datacontextMedicos.js" />
     <Content Include="app\services\admin\datacontextCiclos.js" />
     <Content Include="app\services\azureMobileServices.js" />

@@ -74,6 +74,17 @@
                         rol: ['No_identificados']
                     }
                 }
+            }, {
+                url: '/farmacias',
+                config: {
+                    title: 'farmacias',
+                    templateUrl: 'app/admin/farmacias.html',
+                    settings: {
+                        nav: 4,
+                        content: '<i class="icon-lock"></i> farmacias',
+                        rol: ['No_identificados']
+                    }
+                }
             }
         ];
     }

@@ -96,6 +96,28 @@
                         rol: ['No_identificados']
                     }
                 }
+            }, {
+                url: '/roles',
+                config: {
+                    title: 'roles',
+                    templateUrl: 'app/admin/roles.html',
+                    settings: {
+                        nav: 5,
+                        content: '<i class="icon-lock"></i> roles',
+                        rol: ['No_identificados']
+                    }
+                }
+            }, {
+                url: '/usuarios',
+                config: {
+                    title: 'usuarios',
+                    templateUrl: 'app/admin/usuarios.html',
+                    settings: {
+                        nav: 6,
+                        content: '<i class="icon-lock"></i> usuarios',
+                        rol: ['No_identificados']
+                    }
+                }
             }
         ];
     }

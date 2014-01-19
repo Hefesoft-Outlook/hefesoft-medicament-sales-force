@@ -59,6 +59,10 @@
   <ItemGroup>
     <Content Include="app\admin\admin.html" />
     <Content Include="app\admin\admin.js" />
+    <Content Include="app\admin\usuarios.html" />
+    <Content Include="app\admin\usuarios.js" />
+    <Content Include="app\admin\roles.html" />
+    <Content Include="app\admin\roles.js" />
     <Content Include="app\admin\especialidades.html" />
     <Content Include="app\admin\especialidades.js" />
     <Content Include="app\admin\farmacias.html" />
@@ -68,8 +72,6 @@
     <Content Include="app\admin\ciclos.html" />
     <Content Include="app\admin\ciclos.js" />
     <Content Include="app\app.js" />
-    <Content Include="app\autenticacion\login.html" />
-    <Content Include="app\autenticacion\login.js" />
     <Content Include="app\common\bootstrap\bootstrap.dialog.js" />
     <Content Include="app\common\common.js" />
     <Content Include="app\common\logger.js" />
@@ -86,6 +88,8 @@
     <Content Include="app\layout\topnav.html" />
     <Content Include="app\layout\topnav.js" />
     <Content Include="app\layout\widgetheader.html" />
+    <Content Include="app\services\admin\datacontextUsuarios.js" />
+    <Content Include="app\services\admin\datacontextRoles.js" />
     <Content Include="app\services\admin\datacontextEspecialidades.js" />
     <Content Include="app\services\admin\datacontextFarmacias.js" />
     <Content Include="app\services\admin\datacontextMedicos.js" />

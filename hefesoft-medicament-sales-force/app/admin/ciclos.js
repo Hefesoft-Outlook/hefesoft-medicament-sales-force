@@ -10,37 +10,37 @@
         var vm = this;
         vm.title = 'Ciclos';
         vm.filaSeleccionada = null;
-        vm.ciclosDataSource = datacontextCiclos.ciclosDataSource;
+                
+        function inicializarComponentes() {
+            vm.ciclosDataSource = datacontextCiclos.ciclosDataSource;
+            vm.columns = [
+                { hidden: true, field: "id" },
+                { field: "diasCiclo", title: "Dias de Ciclo" },
+                { field: "fechaInicial", title: "Fecha Inicial", format: "{0: dd-MM-yyyy}" },
+                { field: "fechaFinal", title: "Fecha Final", format: "{0: dd-MM-yyyy}" },
+                { field: "activo", title: "Activo", template: "#=activoTemplate(activo)#"},
+                { command: ["edit", "destroy"] }
+            ];
 
-        
-
-        vm.columns = [            
-            { hidden: true, field: "id" },
-            { field: "diasCiclo", title: "Dias de Ciclo" },
-            { field: "fechaInicial", title: "Fecha Inicial", format: "{0: dd-MM-yyyy}" },
-            { field: "fechaFinal", title: "Fecha Final", format: "{0: dd-MM-yyyy}" },
-            { field: "activo", title: "Activo" },
-            { command: ["edit", "destroy"] }
-        ];
-
-        vm.gridOpts = {
-            columns: vm.columns,
-            filterable: { extra: false },
-            pageable: false,
-            batch: true,
-            reorderable: true,
-            sortable: true,
-            editable: {
-                mode: "popup",
-                //createAt: "top"
-            },
-            mobile: true,
-            height: "24em",
-            resizable: true,
-            toolbar: [
-                { name: "create" }                
-            ]        
-        };
+            vm.gridOpts = {
+                columns: vm.columns,
+                filterable: { extra: false },
+                pageable: false,
+                batch: true,
+                reorderable: true,
+                sortable: true,
+                editable: {
+                    mode: "popup",
+                    //createAt: "top"
+                },
+                mobile: true,
+                height: "24em",
+                resizable: true,
+                toolbar: [
+                    { name: "create" }
+                ]
+            };
+        }
 
         activate();
 
@@ -48,6 +48,7 @@
             common.activateController([], controllerId)
                 .then(function (result) {                   
                     log('Parametrizacion de ciclos');
+                    inicializarComponentes();
                 });
         }
     }

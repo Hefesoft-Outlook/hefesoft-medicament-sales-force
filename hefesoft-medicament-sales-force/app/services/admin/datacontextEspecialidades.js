@@ -1,11 +1,11 @@
 (function () {
     'use strict';
 
-    var serviceId = 'datacontextCiclos';
+    var serviceId = 'datacontextEspecialidades';
     angular.module('app').factory(serviceId,
-        ['common', 'AzureMobileClient', datacontextCiclos]);
+        ['common', 'AzureMobileClient', datacontextEspecialidades]);
 
-    function datacontextCiclos(common, AzureMobileClient) {
+    function datacontextEspecialidades(common, AzureMobileClient) {
         var $q = common.$q;
 
         var dataSource = new kendo.data.DataSource({
@@ -20,31 +20,22 @@
                     id: "id",
                     fields: {
                         id: { editable: false, validation: { required: false } },
-                        fechaInicial: {
-                            type: "date",
-                            validation: {
-                                required: true,
-                               // fechaInicialMayor: function (input) { fechaInicialMayor(input) }
-                            }
-                        },
-                        diasCiclo: { type: "number", validation: { required: true } },
-                        fechaFinal: { type: "date", validation: { required: true } },
-                        activo: { type: "boolean" },
+                        nombre: { type: "string", validation: { required: true } },                        
                     }
                 }
             }
         });
 
         var service = {
-            getCiclos: getCiclos,
-            ciclosDataSource: dataSource
+            getEspecialidades: getEspecialidades,
+            especialidadesDataSource: dataSource
         };
 
         return service;
 
-        function getCiclos() {            
+        function getEspecialidades() {
             var deferred = $q.defer();
-            AzureMobileClient.getAllData('Ciclos',50).then(
+            AzureMobileClient.getAllData('especialidades',50).then(
                     function (resultado) {
                         deferred.resolve(resultado);
                     },
@@ -58,7 +49,7 @@
 
 
         function dataSourceRead(options) {
-            getCiclos().then(
+            getEspecialidades().then(
                         function (result) {                            
                             options.success(result);
                         },
@@ -70,16 +61,7 @@
 
         function dataSourceCreate(options) {
             var item = options.data;
-
-            item.diaFechaInicial = item.fechaInicial.getFullYear();
-            item.mesFechaInicial = item.fechaInicial.getMonth()+1;
-            item.anioFechaInicial = item.fechaInicial.getDate();
-
-            item.diaFechaFinal = item.fechaFinal.getFullYear();
-            item.mesFechaFinal = item.fechaFinal.getMonth()+1;
-            item.anioFechaFinal = item.fechaFinal.getDate();
-
-            AzureMobileClient.addDataAsync("Ciclos", item).then(
+            AzureMobileClient.addDataAsync("especialidades", item).then(
                 function(result){
                         options.success();
                     },
@@ -91,7 +73,7 @@
 
         function dataSourceUpdate(options) {
             var item = options.data;            
-            AzureMobileClient.updateDataAsync("Ciclos", item).then(
+            AzureMobileClient.updateDataAsync("especialidades", item).then(
                 function (result) {
                     options.success();
                 },
@@ -105,7 +87,7 @@
             var item = new Object();
             item.id = options.data.id;
 
-            AzureMobileClient.deleteDataAsync("Ciclos", item).then(
+            AzureMobileClient.deleteDataAsync("especialidades", item).then(
                 function (result) {
                     options.success();
                 },
@@ -113,19 +95,6 @@
                     options.error();
                 }
                 );
-        };
-
-        function fechaInicialMayor(input) {
-            input.attr("data-custom-msg", "Birthday cannot be in the future");
-            var startDate = input.closest(".k-edit-form-container").find("input[name=fechaInicial]").val();
-            var endDate = input.closest(".k-edit-form-container").find("input[name=fechaFinal]").val();
-
-            if (startDate > endDate) {
-                return false;
-            }
-            else {
-                return true;
-            }
         };
     }
 })();

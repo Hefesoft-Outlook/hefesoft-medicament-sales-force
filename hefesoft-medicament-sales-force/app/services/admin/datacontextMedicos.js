@@ -25,6 +25,7 @@
                         primerApellido: { type: "string", validation: { required: true } },
                         segundoApellido: { type: "string", validation: { required: true } },                        
                         cumpleanios: { type: "date" },
+                        especialidadId: { type: "numeric"},
                     }
                 }
             }

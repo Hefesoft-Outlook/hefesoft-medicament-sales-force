@@ -1,4 +1,4 @@
-﻿<section class="mainbar" data-ng-controller="ciclos as vm">
+﻿<section class="mainbar" data-ng-controller="especialidades as vm">
     <section class="matter">
         <div class="container-fluid">
             <div class="row-fluid">
@@ -7,9 +7,9 @@
                     <div class="widget-content user">
                         <div class="demo-section">
 
-                            <div id="grid" kendo-grid
-                                 k-data-source="vm.ciclosDataSource"                                 
-                                 k-options="{{vm.gridOpts}}">
+                            <div id="grid" kendo-grid k-data-source="vm.especialidadesDataSource"
+                                 k-options="{{vm.gridOpts}}"                                
+                                 >
                             </div>
                         </div>                        
                     </div>
@@ -19,19 +19,5 @@
                 </div>
             </div>
         </div>
-
-        <script>
-            function activoTemplate(activo) {
-                if(activo === true)
-                {
-                    return "Activo";
-                }
-                else {
-                    return "Inactivo";
-                }
-            };
-
-        </script>
-
     </section>
 </section>

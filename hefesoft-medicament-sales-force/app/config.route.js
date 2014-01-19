@@ -85,6 +85,17 @@
                         rol: ['No_identificados']
                     }
                 }
+            }, {
+                url: '/especialidades',
+                config: {
+                    title: 'especialidades',
+                    templateUrl: 'app/admin/especialidades.html',
+                    settings: {
+                        nav: 4,
+                        content: '<i class="icon-lock"></i> especialidades',
+                        rol: ['No_identificados']
+                    }
+                }
             }
         ];
     }

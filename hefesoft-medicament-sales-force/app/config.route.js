@@ -27,7 +27,7 @@
                     settings: {
                         nav: 1,
                         content: '<i class="icon-dashboard"></i> Dashboard',
-                        rol: ['admin']
+                        rol: ['No_identificados']
                     }
                 }
             }, {

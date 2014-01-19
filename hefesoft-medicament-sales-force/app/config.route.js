@@ -27,29 +27,7 @@
                     settings: {
                         nav: 1,
                         content: '<i class="icon-dashboard"></i> Dashboard',
-                        rol: ['Identificados']
-                    }
-                }
-            }, {
-                url: '/admin',
-                config: {
-                    title: 'admin',
-                    templateUrl: 'app/admin/admin.html',
-                    settings: {
-                        nav: 2,
-                        content: '<i class="icon-lock"></i> Admin',
-                        rol: ['Identificados']
-                    }
-                }
-            },{
-                url: '/autenticacion',
-                config: {
-                    title: 'login',
-                    templateUrl: 'app/autenticacion/login.html',
-                    settings: {
-                        nav: 3,
-                        content: '<i class="icon-lock"></i> login',
-                        rol: ['Identificados']
+                        rol: ['admin']
                     }
                 }
             }, {
@@ -60,7 +38,7 @@
                     settings: {
                         nav: 3,
                         content: '<i class="icon-lock"></i> ciclos',
-                        rol: ['No_identificados']
+                        rol: ['admin']
                     }
                 }
             }, {
@@ -71,7 +49,7 @@
                     settings: {
                         nav: 4,
                         content: '<i class="icon-lock"></i> medicos',
-                        rol: ['No_identificados']
+                        rol: ['admin']
                     }
                 }
             }, {
@@ -82,7 +60,7 @@
                     settings: {
                         nav: 4,
                         content: '<i class="icon-lock"></i> farmacias',
-                        rol: ['No_identificados']
+                        rol: ['admin']
                     }
                 }
             }, {
@@ -93,7 +71,7 @@
                     settings: {
                         nav: 4,
                         content: '<i class="icon-lock"></i> especialidades',
-                        rol: ['No_identificados']
+                        rol: ['admin']
                     }
                 }
             }, {
@@ -104,7 +82,7 @@
                     settings: {
                         nav: 5,
                         content: '<i class="icon-lock"></i> roles',
-                        rol: ['No_identificados']
+                        rol: ['admin']
                     }
                 }
             }, {
@@ -115,7 +93,7 @@
                     settings: {
                         nav: 6,
                         content: '<i class="icon-lock"></i> usuarios',
-                        rol: ['No_identificados']
+                        rol: ['Identificados']
                     }
                 }
             }

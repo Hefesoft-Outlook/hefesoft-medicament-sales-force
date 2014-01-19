@@ -8,10 +8,42 @@
                         <div class="demo-section">
 
                             <div id="grid" kendo-grid k-data-source="vm.usuariosDataSource"
-                                 k-options="{{vm.gridOpts}}"                                
-                                 >
+                                 k-options="{{vm.gridOpts}}"
+                                 k-selectable="'row'"
+                                 k-on-change="vm.filaSeleccionada = data">
                             </div>
-                        </div>                        
+                        </div>    
+                        
+                        <div kendo-window="modal" k-title="'Title'" k-visible="false" k-modal="true">
+                            Roles Actuales para:   {{ vm.filaSeleccionada.email }}
+                            <br>
+                            <br>
+
+                            <select kendo-drop-down-list
+                                    k-option-label="'Selecione un rol'"
+                                    k-data-text-field="'nombre'"
+                                    k-data-value-field="'id'"
+                                    k-on-change="vm.rolChange(kendoEvent)"
+                                    k-data-source="vm.things"></select>
+
+                            <button ng-click="vm.adicionarRol()" class="btn1">Adicionar</button>
+
+                            <table class="table table-condensed table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>Roles</th>                                        
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr data-ng-repeat="p in vm.filaSeleccionada.roles">
+                                        <td>{{p}}</td>
+                                        <td><a data-ng-click="vm.eliminarRol(p)">Eliminar</a></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+
+                        </div>
+                                            
                     </div>
                     <div class="widget-foot">
                         <div class="clearfix"></div>

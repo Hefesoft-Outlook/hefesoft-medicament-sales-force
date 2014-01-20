@@ -59,18 +59,18 @@
   <ItemGroup>
     <Content Include="app\admin\admin.html" />
     <Content Include="app\admin\admin.js" />
-    <Content Include="app\admin\usuarios.html" />
-    <Content Include="app\admin\usuarios.js" />
-    <Content Include="app\admin\roles.html" />
+    <Content Include="app\admin\farmacias.js" />
+    <Content Include="app\admin\medicos.js" />
     <Content Include="app\admin\roles.js" />
+    <Content Include="app\admin\usuarios.html" />
+    <Content Include="app\admin\roles.html" />
     <Content Include="app\admin\especialidades.html" />
     <Content Include="app\admin\especialidades.js" />
     <Content Include="app\admin\farmacias.html" />
-    <Content Include="app\admin\farmacias.js" />
     <Content Include="app\admin\medicos.html" />
-    <Content Include="app\admin\medicos.js" />
     <Content Include="app\admin\ciclos.html" />
     <Content Include="app\admin\ciclos.js" />
+    <Content Include="app\admin\usuarios.js" />
     <Content Include="app\app.js" />
     <Content Include="app\common\bootstrap\bootstrap.dialog.js" />
     <Content Include="app\common\common.js" />
@@ -294,6 +294,8 @@
     <Content Include="Scripts\angular-animate.min.js.map" />
     <Content Include="Scripts\angular-sanitize.min.js.map" />
     <Content Include="Scripts\angular-cookies.min.js.map" />
+    <None Include="Properties\PublishProfiles\hefesoft-medicament-sales-force - FTP.pubxml" />
+    <None Include="Properties\PublishProfiles\hefesoft-medicament-sales-force - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-2.0.3.intellisense.js" />
     <Content Include="Content\toastr.min.css" />
     <Content Include="Scripts\angular-mocks.js" />

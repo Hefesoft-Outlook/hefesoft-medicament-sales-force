@@ -79,6 +79,7 @@
                     unidadVisita.data = new Object();
                     unidadVisita.data.idUnidadVisita = item.id;
                     unidadVisita.data.tipo = 1;
+                    unidadVisita.data.nombreMostrar = item.primerNombre + ' ' + item.segundoNombre + ' ' + item.primerApellido + ' ' + item.segundoApellido;
                     unidadVisita.data.datosExtra = JSON.stringify(item);
                     datacontextUnidadVisita.dataSourceCreate(unidadVisita);
 
@@ -101,6 +102,7 @@
                             var options = new Object();
                             options.data = new Object();
                             options.data = unidadVisita;
+                            unidadVisita.data.nombreMostrar = item.primerNombre + ' ' + item.segundoNombre + ' ' + item.primerApellido + ' ' + item.segundoApellido;
                             datacontextUnidadVisita.dataSourceUpdate(unidadVisita);
                         },
                         function (error) {

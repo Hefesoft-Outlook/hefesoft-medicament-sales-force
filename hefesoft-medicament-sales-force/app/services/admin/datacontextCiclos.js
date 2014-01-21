@@ -44,7 +44,7 @@
 
         function getCiclos() {            
             var deferred = $q.defer();
-            AzureMobileClient.getAllData('Ciclos',50).then(
+            AzureMobileClient.getAllData('TP_Ciclos', 50).then(
                     function (resultado) {
                         deferred.resolve(resultado);
                     },
@@ -79,7 +79,7 @@
             item.mesFechaFinal = item.fechaFinal.getMonth()+1;
             item.anioFechaFinal = item.fechaFinal.getDate();
 
-            AzureMobileClient.addDataAsync("Ciclos", item).then(
+            AzureMobileClient.addDataAsync("TP_Ciclos", item).then(
                 function(result){
                         options.success();
                     },
@@ -91,7 +91,7 @@
 
         function dataSourceUpdate(options) {
             var item = options.data;            
-            AzureMobileClient.updateDataAsync("Ciclos", item).then(
+            AzureMobileClient.updateDataAsync("TP_Ciclos", item).then(
                 function (result) {
                     options.success();
                 },
@@ -105,7 +105,7 @@
             var item = new Object();
             item.id = options.data.id;
 
-            AzureMobileClient.deleteDataAsync("Ciclos", item).then(
+            AzureMobileClient.deleteDataAsync("TP_Ciclos", item).then(
                 function (result) {
                     options.success();
                 },

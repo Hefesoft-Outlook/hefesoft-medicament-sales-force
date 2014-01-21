@@ -89,6 +89,7 @@
     <Content Include="app\layout\topnav.js" />
     <Content Include="app\layout\widgetheader.html" />
     <Content Include="app\services\admin\datacontextRoles.js" />
+    <Content Include="app\services\admin\datacontextUnidadVisita.js" />
     <Content Include="app\services\admin\datacontextUsuarios.js" />
     <Content Include="app\services\admin\datacontextEspecialidades.js" />
     <Content Include="app\services\admin\datacontextFarmacias.js" />

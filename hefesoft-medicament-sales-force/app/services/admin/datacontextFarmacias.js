@@ -3,9 +3,9 @@
 
     var serviceId = 'datacontextFarmacias';
     angular.module('app').factory(serviceId,
-        ['common', 'AzureMobileClient', datacontextFarmacias]);
+        ['common', 'AzureMobileClient', 'datacontextUnidadVisita', datacontextFarmacias]);
 
-    function datacontextFarmacias(common, AzureMobileClient) {
+    function datacontextFarmacias(common, AzureMobileClient, datacontextUnidadVisita) {
         var $q = common.$q;
 
         var dataSource = new kendo.data.DataSource({
@@ -37,7 +37,7 @@
 
         function getfarmacias() {            
             var deferred = $q.defer();
-            AzureMobileClient.getAllData('farmacias',50).then(
+            AzureMobileClient.getAllData('TP_Farmacias',50).then(
                     function (resultado) {
                         deferred.resolve(resultado);
                     },
@@ -63,9 +63,18 @@
 
         function dataSourceCreate(options) {
             var item = options.data;
-            AzureMobileClient.addDataAsync("farmacias", item).then(
+            AzureMobileClient.addDataAsync("TP_Farmacias", item).then(
                 function(result){
-                        options.success();
+                    options.success();
+
+                    item = result;
+                    var unidadVisita = new Object();
+                    unidadVisita.data = new Object();
+                    unidadVisita.data.idUnidadVisita = item.id;
+                    unidadVisita.data.tipo = 2;
+                    unidadVisita.data.datosExtra = JSON.stringify(item);
+                    datacontextUnidadVisita.dataSourceCreate(unidadVisita);
+
                     },
                 function (err) {
                      options.error();
@@ -75,9 +84,23 @@
 
         function dataSourceUpdate(options) {
             var item = options.data;            
-            AzureMobileClient.updateDataAsync("farmacias", item).then(
+            AzureMobileClient.updateDataAsync("TP_Farmacias", item).then(
                 function (result) {
                     options.success();
+
+                    datacontextUnidadVisita.getUnidadVisitaById(result.id).then(
+                        function (unidadVisita) {
+                            unidadVisita.datosExtra = JSON.stringify(result);
+                            var options = new Object();
+                            options.data = new Object();
+                            options.data = unidadVisita;
+                            datacontextUnidadVisita.dataSourceUpdate(unidadVisita);
+                        },
+                        function (error) {
+
+                        }
+                        );
+
                 },
                 function (err) {
                     options.error();
@@ -89,9 +112,22 @@
             var item = new Object();
             item.id = options.data.id;
 
-            AzureMobileClient.deleteDataAsync("farmacias", item).then(
+            AzureMobileClient.deleteDataAsync("TP_Farmacias", item).then(
                 function (result) {
                     options.success();
+
+                    datacontextUnidadVisita.getUnidadVisitaById(result.id).then(
+                        function (unidadVisita) {
+                            unidadVisita.datosExtra = JSON.stringify(result);
+                            var options = new Object();
+                            options.data = new Object();
+                            options.data = unidadVisita;
+                            datacontextUnidadVisita.dataSourceDestroy(unidadVisita);
+                        },
+                        function (error) {
+
+                        }
+                        );
                 },
                 function (err) {
                     options.error();

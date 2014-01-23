@@ -19,7 +19,14 @@
                 },
                 destroy: function (options) { dataSourceDestroy(options) },
             },
-            schema: {
+            pageSize: 20,
+            serverPaging: true,
+            serverFiltering: true,
+            serverSorting: true
+            , schema: {
+                total: function (response) {
+                    return response.totalCount; // total is returned in the "total" field of the response
+                },
                 model: {
                     id: "id",
                     fields: {
@@ -29,10 +36,10 @@
                         primerApellido: { type: "string", validation: { required: true } },
                         segundoApellido: { type: "string", validation: { required: true } }, 
                         cumpleanios: { type: "date", validation: { required: false } },
-                        especialidadId: { type: "numeric", validation: { required: false } },
+                        //especialidadId: { type: "numeric", validation: { required: false } },
                     }
                 }
-            }
+            },
         });
 
         var service = {
@@ -42,9 +49,9 @@
 
         return service;
 
-        function getMedicos() {            
+        function getMedicos(options) {
             var deferred = $q.defer();
-            AzureMobileClient.getAllData('TP_Medicos', 50).then(
+            AzureMobileClient.getDataFilterskip('TP_Medicos', options.data.filter, options.data.take, options.data.skip, options.data.sort).then(
                     function (resultado) {
                         deferred.resolve(resultado);
                     },
@@ -58,7 +65,8 @@
 
 
         function dataSourceRead(options) {
-            getMedicos().then(
+
+            getMedicos(options).then(
                         function (result) {                            
                             options.success(result);
                         },

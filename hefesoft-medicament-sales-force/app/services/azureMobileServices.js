@@ -36,6 +36,36 @@
             return azureMobileClient.prepService(tableName).take(numberRows).read();
         };
 
+        azureMobileClient.getDataFilterskip = function (tableName, data, numberRows, skipNumber, sort) {
+
+            var servicio = azureMobileClient.prepService(tableName).includeTotalCount().skip(skipNumber).take(numberRows);
+
+            if (data !== undefined && data != null) {
+                var filtros = new Object();
+                for (var iterador in data.filters) {
+                    filtros[data.filters[iterador].field] = data.filters[iterador].value;
+                }
+                servicio.where(filtros);
+            }
+
+            if (sort !== undefined && sort != null) {                
+                for (var iterador in sort) {
+                    var sortItem = sort[iterador].field;
+                    var dir = sort[iterador].dir;
+                    break;
+                }
+
+                if (dir === 'asc') {
+                    servicio.orderBy(sortItem);
+                }
+                else {
+                    servicio.orderByDescending(sortItem);
+                }
+            }
+             
+            return servicio.read();
+        };
+
         azureMobileClient.getDataFilter = function (tableName, data, numberRows) {
             return azureMobileClient.prepService(tableName).take(numberRows).where(data).read();
         };

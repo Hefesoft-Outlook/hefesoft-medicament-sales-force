@@ -13,10 +13,10 @@
         vm.medicosDataSource = datacontextMedicos.medicosDataSource;
 
         vm.rowSelected = function (e) {
-            var grid = e.sender;
-            var contador = -1;            
-            var numeroColumna = _.find(grid.columns, function (columna) { contador++; return columna.field == "especialidad"; });
-            grid.columns[contador].editor = categoryDropDownEditor;
+            //var grid = e.sender;
+            //var contador = -1;            
+            //var numeroColumna = _.find(grid.columns, function (columna) { contador++; return columna.field == "especialidad"; });
+            //grid.columns[contador].editor = categoryDropDownEditor;
         };
 
         vm.columns = [            
@@ -26,14 +26,18 @@
             { field: "primerApellido", title: "Primer Apellido" },
             { field: "segundoApellido", title: "Segundo Apellido" },
             { field: "cumpleanios", title: "Cumpleaños", format: "{0: dd-MM-yyyy}" },
-            { field: "especialidad", title: "Especialidad"},
+            //{ field: "especialidad", title: "Especialidad"},
             { command: ["edit", "destroy"] }
         ];
 
         vm.gridOpts = {
             columns: vm.columns,
+            pageSize: 20,
+            serverPaging: true,
+            serverFiltering: true,
+            serverSorting: true,
             filterable: { extra: false },
-            pageable: false,
+            pageable: true,
             selectable : "row",
             batch: true,
             reorderable: true,

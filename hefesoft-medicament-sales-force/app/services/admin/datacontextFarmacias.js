@@ -15,7 +15,14 @@
                 update: function (options) { dataSourceUpdate(options) },
                 destroy: function (options) { dataSourceDestroy(options) },
             },
+            pageSize: 20,
+            serverPaging: true,
+            serverFiltering: true,
+            serverSorting: true,
             schema: {
+                total: function (response) {
+                    return response.totalCount; // total is returned in the "total" field of the response
+                },
                 model: {
                     id: "id",
                     fields: {
@@ -35,9 +42,9 @@
 
         return service;
 
-        function getfarmacias() {            
+        function getfarmacias(options) {
             var deferred = $q.defer();
-            AzureMobileClient.getAllData('TP_Farmacias',50).then(
+            AzureMobileClient.getDataFilterskip('TP_Farmacias', options.data.filter, options.data.take, options.data.skip, options.data.sort).then(
                     function (resultado) {
                         deferred.resolve(resultado);
                     },
@@ -51,7 +58,7 @@
 
 
         function dataSourceRead(options) {
-            getfarmacias().then(
+            getfarmacias(options).then(
                         function (result) {                            
                             options.success(result);
                         },

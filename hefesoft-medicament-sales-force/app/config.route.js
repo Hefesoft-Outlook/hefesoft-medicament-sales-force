@@ -49,7 +49,7 @@
                     settings: {
                         nav: 4,
                         content: '<i class="icon-lock"></i> medicos',
-                        rol: ['admin']
+                        rol: ['No_identificados']
                     }
                 }
             }, {

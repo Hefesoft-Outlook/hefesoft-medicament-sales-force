@@ -22,8 +22,12 @@
 
         vm.gridOpts = {
             columns: vm.columns,
+            pageSize: 20,
             filterable: { extra: false },
-            pageable: false,
+            serverPaging: true,
+            serverFiltering: true,
+            serverSorting: true,
+            pageable: true,
             batch: true,
             reorderable: true,
             sortable: true,

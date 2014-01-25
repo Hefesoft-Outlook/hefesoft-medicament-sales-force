@@ -81,6 +81,8 @@
     <Content Include="app\config.route.js" />
     <Content Include="app\dashboard\dashboard.html" />
     <Content Include="app\dashboard\dashboard.js" />
+    <Content Include="app\fuerzaVentas\planeacion.html" />
+    <Content Include="app\fuerzaVentas\planeacion.js" />
     <Content Include="app\layout\shell.html" />
     <Content Include="app\layout\shell.js" />
     <Content Include="app\layout\sidebar.html" />
@@ -98,6 +100,7 @@
     <Content Include="app\services\azureMobileServices.js" />
     <Content Include="app\services\datacontext.js" />
     <Content Include="app\services\directives.js" />
+    <Content Include="app\services\fuerzaVentas\datacontextPanel.js" />
     <Content Include="app\templates\login.html" />
     <Content Include="app\templates\registro.html" />
     <Content Include="Content\bootstrap-responsive.css" />
@@ -1165,6 +1168,7 @@
       <DependentUpon>Web.config</DependentUpon>
     </None>
   </ItemGroup>
+  <ItemGroup />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

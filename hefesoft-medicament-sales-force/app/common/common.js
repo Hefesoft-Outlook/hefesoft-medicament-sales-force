@@ -44,7 +44,8 @@
             textContains: textContains,
             $cookieStore: $cookieStore,
             sidebar : null,
-            Usuario_Logueado: null
+            Usuario_Logueado: null,
+            ciclo: 'D43B7F8D-DB0D-4784-92AC-F62DB01B6041'
         };
 
         return service;

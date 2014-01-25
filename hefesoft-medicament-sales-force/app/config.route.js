@@ -96,6 +96,17 @@
                         rol: ['Identificados']
                     }
                 }
+            }, {
+                url: '/planear',
+                config: {
+                    title: 'planeacion',
+                    templateUrl: 'app/fuerzaVentas/planeacion.html',
+                    settings: {
+                        nav: 6,
+                        content: '<i class="icon-lock"></i> planeacion',
+                        rol: ['Identificados']
+                    }
+                }
             }
         ];
     }

@@ -11,41 +11,25 @@
         vm.title = 'Planeacion';
         vm.filaSeleccionada = null;
         vm.planecionDataSource = datacontextPanel.panelDataSource;
-
         
-        vm.columns = [            
-            { hidden: true, field: "id" },
-            { editable: false, field: "primerNombre", title: "Primer Nombre" },
-            { editable: false, field: "contactosCiclo", title: "Contactos Ciclo" },
-            { editable: false, field: "contactosPendientes", title: "Contactos Pendientes" },
-            { command: ["edit", "destroy"] }
-        ];
-
-        vm.gridOpts = {
-            columns: vm.columns,            
-            scrollable: {
-                virtual: true
-            },
-            sortable: true,
-            selectable : "row",            
-            editable: {
-                mode: "popup",
-                //createAt: "top"
-            },
-            mobile: true,
-            height: "24em",
-            resizable: true,
-            toolbar: [
-                { name: "create" }                
-            ]        
-        };
-
         activate();
 
         function activate() {
             common.activateController([], controllerId)
                 .then(function (result) {                   
                     log('Planear visitas');
+
+                    $("#grid").kendoGrid({
+                        dataSource: vm.planecionDataSource,
+                        scrollable: {
+                            virtual: true
+                        },
+                        selectable: "row",
+                        rowTemplate: kendo.template($("#rowTemplate").html()),
+                        altRowTemplate: kendo.template($("#altRowTemplate").html()),
+                        height: 600
+                    });
+
                 });
         }        
     }

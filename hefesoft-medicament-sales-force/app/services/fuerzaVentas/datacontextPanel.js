@@ -32,9 +32,11 @@
                     id: "id",
                     fields: {
                         id: { editable: false, validation: { required: false } },
-                        primerNombre: { field: "nombre", type: "string", validation: { required: true } },
+                        nombre: { field: "nombre", type: "string", validation: { required: true } },
                         contactosCiclo: { field: "contactosCiclo", type: "numeric", validation: { required: true } },
                         contactosPendientes: { field: "contactosPendientes", type: "numeric", validation: { required: true } },
+                        direccion: { field: "direccion", type: "string", validation: { required: true } },
+                        tipoNombre: { field: "tipoNombre", type: "string", validation: { required: true } },
                     }
                 }
             },
@@ -140,10 +142,17 @@
                 try {
                     if (resultado[i].datosExtra.primerNombre === undefined){
                         resultado[i]["nombre"] = resultado[i].datosExtra.Nombre;
+                        resultado[i]["tipo"] = 2;
+                        resultado[i]["tipoNombre"] = "Farmacia";
                     }
                     else {
-                        resultado[i]["nombre"] = resultado[i].datosExtra.primerNombre + " " + resultado[i].datosExtra.primerApellido;
+                        resultado[i]["nombre"] = resultado[i].datosExtra.primerNombre + " " + resultado[i].datosExtra.primerApellido;                       
+                        resultado[i]["tipo"] = 1;
+                        resultado[i]["tipoNombre"] = "Medico";
                     }
+
+                    resultado[i]["direccion"] = resultado[i].datosExtra.Direccion;
+
                 } catch (e) {
 
                 }

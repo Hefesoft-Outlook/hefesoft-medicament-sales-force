@@ -2,11 +2,11 @@
     <section class="matter">
         <div class="container-fluid">
             <div class="row-fluid">
+                
                 <div class="widget wviolet span4">
                     <div data-cc-widget-header title="{{vm.title}}"></div>
-                    <div class="widget-content user">
-                        <div id="example" class="k-content">
-                            <table id="grid">
+                    <div class="widget-content user">                                                
+                            <table id="gridPanelVisitador">
                                 <colgroup>
                                     <col class="span1" />
                                     <col class="span2" />
@@ -30,96 +30,48 @@
                                         <td colspan="3"></td>
                                     </tr>
                                 </tbody>
-                            </table>
-                            <script id="rowTemplate" type="text/x-kendo-tmpl">
-                                <tr>
-                                    <td class="photo">
-                                        <img src="http://www.dailybourse.ir/wp-content/uploads/2013/09/unknown-avatar1.jpg" alt="#: data.EmployeeID #" />
-                                    </td>
-                                    <td class="details">
-                                        <span class="title">#: nombre #</span>
-                                        <span class="title">#: direccion #</span>
-                                        <span class="title">#: tipoNombre #</span>
-                                    </td>
-                                    <td class="employeeID">
-                                        <span>#: contactosCiclo # / #: contactosPendientes #</span>
-                                    </td>
-                                </tr>
-                            </script>
-                            <script id="altRowTemplate" type="text/x-kendo-tmpl">
-                                <tr class="k-alt">
-                                    <td class="photo">
-                                        <img src="http://www.dailybourse.ir/wp-content/uploads/2013/09/unknown-avatar1.jpg" alt="#: data.EmployeeID #" />
-                                    </td>
-                                    <td class="details">
-                                        <span class="title">#: nombre #</span>
-                                        <span class="title">#: direccion #</span>
-                                        <span class="title">#: tipoNombre #</span>
-                                    </td>
-                                    <td class="employeeID">
-                                        <span>#: contactosCiclo # / #: contactosPendientes #</span>
-                                    </td>
-                                </tr>
-                            </script>
-
-                            <style scoped>
-                                .photo {
-                                    
-                                }
-
-                                .details {
-                                    
-                                }
-
-                                .title {
-                                    display: block;
-                                    font-size: 1.0em;
-                                }
-
-                                .description {
-                                    display: block;
-                                    padding-top: 1.0em;
-                                }
-
-                                .employeeID {
-                                    font-family: "Segoe UI", "Helvetica Neue", Arial, sans-serif;
-                                    font-size: 15px;
-                                    font-weight: bold;
-                                    color: #898989;
-                                }
-
-                                td.photo, .employeeID {
-                                    text-align: center;
-                                }
-
-                                .k-grid-header .k-header {
-                                    padding: 10px 20px;
-                                }
-
-                                .k-grid td {
-                                    background: -moz-linear-gradient(top, rgba(0,0,0,0.05) 0%, rgba(0,0,0,0.15) 100%);
-                                    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(0,0,0,0.05)), color-stop(100%,rgba(0,0,0,0.15)));
-                                    background: -webkit-linear-gradient(top, rgba(0,0,0,0.05) 0%,rgba(0,0,0,0.15) 100%);
-                                    background: -o-linear-gradient(top, rgba(0,0,0,0.05) 0%,rgba(0,0,0,0.15) 100%);
-                                    background: -ms-linear-gradient(top, rgba(0,0,0,0.05) 0%,rgba(0,0,0,0.15) 100%);
-                                    background: linear-gradient(to bottom, rgba(0,0,0,0.05) 0%,rgba(0,0,0,0.15) 100%);
-                                    padding: 20px;
-                                }
-
-                                .k-grid .k-alt td {
-                                    background: -moz-linear-gradient(top, rgba(0,0,0,0.2) 0%, rgba(0,0,0,0.1) 100%);
-                                    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(0,0,0,0.2)), color-stop(100%,rgba(0,0,0,0.1)));
-                                    background: -webkit-linear-gradient(top, rgba(0,0,0,0.2) 0%,rgba(0,0,0,0.1) 100%);
-                                    background: -o-linear-gradient(top, rgba(0,0,0,0.2) 0%,rgba(0,0,0,0.1) 100%);
-                                    background: -ms-linear-gradient(top, rgba(0,0,0,0.2) 0%,rgba(0,0,0,0.1) 100%);
-                                    background: linear-gradient(to bottom, rgba(0,0,0,0.2) 0%,rgba(0,0,0,0.1) 100%);
-                                }
-                            </style>
-                        </div>
+                            </table>                        
                     </div>
 
                 </div>
+
+                <div class="widget wviolet span4">
+                    <div data-cc-widget-header title="Visitas Planeadas"></div>
+                    <div class="widget-content user">
+                        <table id="grid2">
+                            <colgroup>
+                                <col class="span1" />
+                                <col class="span2" />
+                                <col class="span1" />
+                            </colgroup>
+                            <thead>
+                                <tr>
+                                    <th>
+                                        Imagen
+                                    </th>
+                                    <th>
+                                        Detalles
+                                    </th>
+                                    <th>
+                                        Contactos
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td colspan="3"></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                </div>
+
+         
+
             </div>
         </div>
+
     </section>
 </section>
+

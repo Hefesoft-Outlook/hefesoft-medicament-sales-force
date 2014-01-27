@@ -19,6 +19,7 @@
                 },
                 destroy: function (options) { dataSourceDestroy(options) },
             },
+            autoSync: false,
             pageSize: 20,
             serverPaging: true,            
             serverSorting: true

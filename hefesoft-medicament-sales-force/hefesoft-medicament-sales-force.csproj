@@ -100,6 +100,7 @@
     <Content Include="app\services\azureMobileServices.js" />
     <Content Include="app\services\datacontext.js" />
     <Content Include="app\services\directives.js" />
+    <Content Include="app\services\fuerzaVentas\datacontextVisitaPlaneada.js" />
     <Content Include="app\services\fuerzaVentas\datacontextPanel.js" />
     <Content Include="app\templates\login.html" />
     <Content Include="app\templates\registro.html" />

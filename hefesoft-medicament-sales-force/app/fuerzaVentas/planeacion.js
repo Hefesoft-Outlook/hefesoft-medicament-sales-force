@@ -11,8 +11,7 @@
         vm.title = 'Planeacion';
         vm.filaSeleccionada = null;
         vm.planecionDataSource = datacontextPanel.panelDataSource;
-        vm.visitaPlaneadaDataSource = datacontextVisitaPlaneada.visitaPlaneadaDataSource;
-
+        vm.visitaPlaneadaDataSource = datacontextVisitaPlaneada.visitaPlaneadaDataSource;        
         
         activate();
 
@@ -32,9 +31,19 @@
                         altRowTemplate: kendo.template($("#altRowTemplate").html()),
                         height: 600
                     });
+
+                    $("#gridPanelVisitador").on("click", ".k-grid-agregar", function () {                      
+
+                        for (var i in vm.filaSeleccionada) {
+                            vm.planecionDataSource.updateField({ keyField: 'id', keyValue: vm.filaSeleccionada[i].id, updateField: 'contactosPendientes', updateValue: vm.filaSeleccionada[i].contactosPendientes + 1 });
+                        };
+
+                        var grid = $("#gridPanelVisitador").data("kendoGrid");
+                        grid.refresh();
+                    });
+
                 });
         }
-
 
         function cargarTemplate() {
             var $q = common.$q;
@@ -59,12 +68,6 @@
 
             vm.filaSeleccionada = selectedDataItems;
 
-            for (var i in vm.filaSeleccionada) {
-                vm.planecionDataSource.updateField({ keyField: 'id', keyValue: vm.filaSeleccionada[i].id, updateField: 'contactosPendientes', updateValue: vm.filaSeleccionada[i].contactosPendientes + 1 });
-            };
-
-            var grid = $("#gridPanelVisitador").data("kendoGrid");
-            grid.refresh();
         }
 
     }

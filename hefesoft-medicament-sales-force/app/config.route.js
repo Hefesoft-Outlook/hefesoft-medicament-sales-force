@@ -107,6 +107,17 @@
                         rol: ['Identificados']
                     }
                 }
+            }, {
+                url: '/registro',
+                config: {
+                    title: 'registro',
+                    templateUrl: 'app/fuerzaVentas/visitaRealizada.html',
+                    settings: {
+                        nav: 6,
+                        content: '<i class="icon-lock"></i> registro',
+                        rol: ['Identificados']
+                    }
+                }
             }
         ];
     }

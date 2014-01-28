@@ -47,7 +47,9 @@
             Usuario_Logueado: null,
             ciclo: 'D43B7F8D-DB0D-4784-92AC-F62DB01B6041',
             fechaCalculoPlanear: null,
-            validarSiEsFechaHoy: validarSiEsFechaHoy
+            validarSiEsFechaHoy: validarSiEsFechaHoy,
+            convertirDatosExtra: convertirDatosExtra,
+            mapearNombres: mapearNombres
         };
 
         return service;
@@ -136,8 +138,42 @@
             else {
                 return false;
             }
-
         }
+
+        function convertirDatosExtra(resultado) {
+            for (var i in resultado) {
+                try {
+                    // Revizarlo
+                    while (!(resultado[i].datosExtra instanceof Array)) {
+                        resultado[i].datosExtra = JSON.parse(resultado[i].datosExtra);
+                    }
+                } catch (e) {
+
+                }
+            }
+        };
+
+        function mapearNombres(resultado) {
+            for (var i in resultado) {
+                try {
+                    if (resultado[i].datosExtra.primerNombre === undefined) {
+                        resultado[i]["nombre"] = resultado[i].datosExtra.Nombre;
+                        resultado[i]["tipo"] = 2;
+                        resultado[i]["tipoNombre"] = "Farmacia";
+                    }
+                    else {
+                        resultado[i]["nombre"] = resultado[i].datosExtra.primerNombre + " " + resultado[i].datosExtra.primerApellido;
+                        resultado[i]["tipo"] = 1;
+                        resultado[i]["tipoNombre"] = "Medico";
+                    }
+
+                    resultado[i]["direccion"] = resultado[i].datosExtra.Direccion;
+
+                } catch (e) {
+
+                }
+            }
+        };
 
     }
 })();

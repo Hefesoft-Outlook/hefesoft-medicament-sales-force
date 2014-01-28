@@ -102,7 +102,7 @@
 
                         if (!existe) {
 
-                            if (vm.filaSeleccionada[i].contactosPendientes <= vm.filaSeleccionada[i].contactosCiclo) {
+                            if (vm.filaSeleccionada[i].contactosPendientes < vm.filaSeleccionada[i].contactosCiclo) {
                                 // Actualiza el registro
                                 vm.planecionDataSource.updateField({ keyField: 'id', keyValue: vm.filaSeleccionada[i].id, updateField: 'contactosPendientes', updateValue: vm.filaSeleccionada[i].contactosPendientes + 1 });
 

@@ -64,8 +64,8 @@
 
             AzureMobileClient.getDataFilterskip('TM_Panel_Visitador', options.data.filter, options.data.take, options.data.skip, options.data.sort).then(
                     function (resultado) {
-                        convertirDatosExtra(resultado);
-                        mapearNombres(resultado);
+                        common.convertirDatosExtra(resultado);
+                        common.mapearNombres(resultado);
                         deferred.resolve(resultado);
                     },
                     function (error) {
@@ -139,41 +139,6 @@
                     options.error();
                 }
                 );
-        };
-
-        function convertirDatosExtra(resultado) {
-            for (var i in resultado) {
-                try {
-                    // Revizarlo
-                    while (!(resultado[i].datosExtra instanceof Array)) {
-                        resultado[i].datosExtra = JSON.parse(resultado[i].datosExtra);
-                    }
-                } catch (e) {
-
-                }
-            }
-        };
-
-        function mapearNombres(resultado) {
-            for (var i in resultado) {
-                try {
-                    if (resultado[i].datosExtra.primerNombre === undefined){
-                        resultado[i]["nombre"] = resultado[i].datosExtra.Nombre;
-                        resultado[i]["tipo"] = 2;
-                        resultado[i]["tipoNombre"] = "Farmacia";
-                    }
-                    else {
-                        resultado[i]["nombre"] = resultado[i].datosExtra.primerNombre + " " + resultado[i].datosExtra.primerApellido;                       
-                        resultado[i]["tipo"] = 1;
-                        resultado[i]["tipoNombre"] = "Medico";
-                    }
-
-                    resultado[i]["direccion"] = resultado[i].datosExtra.Direccion;
-
-                } catch (e) {
-
-                }
-            }
         };
     }
 })();

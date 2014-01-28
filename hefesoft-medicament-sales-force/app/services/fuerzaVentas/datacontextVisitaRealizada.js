@@ -1,19 +1,13 @@
 (function () {
     'use strict';
 
-    var serviceId = 'datacontextVisitaPlaneada';
+    var serviceId = 'datacontextVisitaRealizada';
     angular.module('app').factory(serviceId,
-        ['common', 'AzureMobileClient', datacontextVisitaPlaneada]);
+        ['common', 'AzureMobileClient', datacontextVisitaRealizada]);
 
-    function datacontextVisitaPlaneada(common, AzureMobileClient) {
+    function datacontextVisitaRealizada(common, AzureMobileClient) {
         var $q = common.$q;      
         var item = null;
-
-        var evtEliminarVisitaPlaneada = document.createEvent("Event");
-        evtEliminarVisitaPlaneada.initEvent("eliminarVisitaPlaneada", true, true);
-        // custom param
-        evtEliminarVisitaPlaneada.elemento = null;
-            
 
 
         var dataSource = new kendo.data.DataSource({
@@ -43,20 +37,21 @@
                         idCiclo: { field: "idCiclo", type: "string", validation: { required: true } },
                         idPanelVisitador: { field: "idPanelVisitador", type: "string", validation: { required: true } },
                         fecha: { field: "fecha", type: "date", validation: { required: true } },
+                        observaciones: { field: "observaciones", type: "string", validation: { required: true } },
+                        idActividadJustificada: { field: "idActividadJustificada", type: "numeric", validation: { required: true } },
                     }
                 }
             },
         });
 
         var service = {            
-            visitaPlaneadaDataSource: dataSource,
-            getVisitaPlaneadasDia: getVisitaPlaneadasDia
+            visitaRealizadaDataSource: dataSource           
         };
     
 
         return service;
 
-        function getVisitaPlaneada(options) {
+        function getVisitaRealizada(options) {
             var deferred = $q.defer();
 
             if (options.data.filter === undefined) {
@@ -78,7 +73,7 @@
             options.data.filter.filters.push({ field: "diafecha", value: common.fechaCalculoPlanear.getDate() });
             
 
-            AzureMobileClient.getDataFilterskip('tm_visita_planeada', options.data.filter, options.data.take, options.data.skip, options.data.sort).then(
+            AzureMobileClient.getDataFilterskip('tm_visita_realizada', options.data.filter, options.data.take, options.data.skip, options.data.sort).then(
                     function (resultado) {
                         common.convertirDatosExtra(resultado);
                         common.mapearNombres(resultado);
@@ -92,37 +87,6 @@
             return deferred.promise;
         }
 
-        function getVisitaPlaneadasDia(options) {
-            var deferred = $q.defer();
-
-            var filter = new Object();
-            filter.filters = new Array();
-            
-            if (common.fechaCalculoPlanear === null) {
-                var today = new Date();                
-                common.fechaCalculoPlanear = today;
-            }
-
-            filter.filters.push({ field: "idCiclo", value: common.ciclo });
-            filter.filters.push({ field: "idUsuario", value: common.Usuario_Logueado.idAntiguo });
-            filter.filters.push({ field: "aniofecha", value: common.fechaCalculoPlanear.getFullYear() });
-            filter.filters.push({ field: "mesfecha", value: common.fechaCalculoPlanear.getMonth() + 1 });
-            filter.filters.push({ field: "diafecha", value: common.fechaCalculoPlanear.getDate() });
-
-
-            AzureMobileClient.getDataFilterskip('tm_visita_planeada', filter, 100, 0).then(
-                    function (resultado) {
-                        common.convertirDatosExtra(resultado);
-                        common.mapearNombres(resultado);
-                        deferred.resolve(resultado);
-                    },
-                    function (error) {
-                        deferred.reject(error);
-                    }
-                );
-
-            return deferred.promise;
-        }
 
         function dataSourceRead(options) {
             getVisitaPlaneada(options).then(
@@ -140,7 +104,7 @@
             item = options.data;
             generarEnterosFecha();
 
-            AzureMobileClient.addDataAsync("tm_visita_planeada", item).then(
+            AzureMobileClient.addDataAsync("tm_visita_realizada", item).then(
                 function(result){
                     options.success(result);                    
                     },
@@ -154,7 +118,7 @@
             options.data.datosExtra = JSON.stringify(options.data.datosExtra);
             item = options.data;
             generarEnterosFecha();
-            AzureMobileClient.updateDataAsync("tm_visita_planeada", item).then(
+            AzureMobileClient.updateDataAsync("tm_visita_realizada", item).then(
                 function (result) {
                     options.success(result);
                 },
@@ -169,7 +133,7 @@
             var item = new Object();
             item.id = options.data.id;
 
-            AzureMobileClient.deleteDataAsync("tm_visita_planeada", item).then(
+            AzureMobileClient.deleteDataAsync("tm_visita_realizada", item).then(
                 function (result) {
                     options.success(item.id);
                     document.dispatchEvent(evtEliminarVisitaPlaneada);
@@ -178,8 +142,7 @@
                     options.error();
                 }
                 );
-        };       
-
+        };    
 
         function generarEnterosFecha() {
             item.aniofecha = item.fecha.getFullYear();

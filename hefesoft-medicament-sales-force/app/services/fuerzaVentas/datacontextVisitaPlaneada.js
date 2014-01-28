@@ -103,7 +103,7 @@
                         );
         };
 
-        function dataSourceCreate(options) {            
+        function dataSourceCreate(options) {
             options.data.datosExtra = JSON.stringify(options.data.datosExtra);
             item = options.data;
             generarEnterosFecha();
@@ -111,6 +111,7 @@
             AzureMobileClient.addDataAsync("tm_visita_planeada", item).then(
                 function(result){
                     options.success();
+                    dataSource.read(dataSource._data)
                     },
                 function (err) {
                      options.error();

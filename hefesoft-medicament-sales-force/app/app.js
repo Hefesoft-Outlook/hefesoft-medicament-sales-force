@@ -46,10 +46,6 @@
             }
         };
 
-
-
-
-
         $.extend(true, kendo.data.DataSource.prototype, dataSourceExtensions);
 
     }]);

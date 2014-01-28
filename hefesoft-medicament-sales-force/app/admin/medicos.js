@@ -38,8 +38,7 @@
             serverSorting: true,
             filterable: { extra: false },
             pageable: true,
-            selectable : "row",
-            batch: true,
+            selectable : "row",          
             reorderable: true,
             sortable: true,
             editable: {

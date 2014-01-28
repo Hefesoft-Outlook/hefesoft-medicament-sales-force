@@ -26,8 +26,7 @@
         vm.gridOpts = {
             columns: vm.columns,
             filterable: { extra: false },
-            pageable: false,
-            batch: true,
+            pageable: false,           
             reorderable: true,
             sortable: true,
             editable: {

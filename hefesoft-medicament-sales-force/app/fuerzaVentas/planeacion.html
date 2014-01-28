@@ -3,7 +3,7 @@
         <div class="container-fluid">
             <div class="row-fluid">
                 
-                <div class="widget wviolet span4">
+                <div class="widget wviolet span6">
                     <div data-cc-widget-header title="{{vm.title}}"></div>
                     <div class="widget-content user">                                                
 
@@ -63,7 +63,7 @@
                                 <colgroup>
                                     <col class="span1" />
                                     <col class="span2" />
-                                    <col class="span1" />
+                                    <col class="span3" />
                                 </colgroup>
                                 <thead>
                                     <tr>
@@ -88,34 +88,11 @@
 
                 </div>
 
-                <div class="widget wviolet span4">
+                <div class="widget wviolet span6">
                     <div data-cc-widget-header title="Visitas Planeadas"></div>
+                    Fecha a realizar la visita:  <input id="datepickerFechaPlaneacion" />
                     <div class="widget-content user">
-                        <table id="grid2">
-                            <colgroup>
-                                <col class="span1" />
-                                <col class="span2" />
-                                <col class="span1" />
-                            </colgroup>
-                            <thead>
-                                <tr>
-                                    <th>
-                                        Imagen
-                                    </th>
-                                    <th>
-                                        Detalles
-                                    </th>
-                                    <th>
-                                        Contactos
-                                    </th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td colspan="3"></td>
-                                </tr>
-                            </tbody>
-                        </table>
+                        <div id="gridVisitaPlaneada"></div>
                     </div>
                 </div>
             </div>

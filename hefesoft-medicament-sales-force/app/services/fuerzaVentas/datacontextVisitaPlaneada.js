@@ -6,7 +6,15 @@
         ['common', 'AzureMobileClient', datacontextVisitaPlaneada]);
 
     function datacontextVisitaPlaneada(common, AzureMobileClient) {
-        var $q = common.$q;
+        var $q = common.$q;      
+        var item = null;
+
+        var evtEliminarVisitaPlaneada = document.createEvent("Event");
+        evtEliminarVisitaPlaneada.initEvent("eliminarVisitaPlaneada", true, true);
+        // custom param
+        evtEliminarVisitaPlaneada.elemento = null;
+            
+
 
         var dataSource = new kendo.data.DataSource({
             transport: {
@@ -30,6 +38,7 @@
                     id: "id",
                     fields: {
                         id: { editable: false, validation: { required: false } },
+                        nombre: { field: "nombre", type: "string", editable: false, validation: { required: false } },
                         idUsuario: { field: "idUsuario", type: "string", validation: { required: true } },
                         idCiclo: { field: "idCiclo", type: "string", validation: { required: true } },
                         idPanelVisitador: { field: "idPanelVisitador", type: "string", validation: { required: true } },
@@ -40,8 +49,9 @@
         });
 
         var service = {            
-            visitaPlaneadaDataSource: dataSource
+            visitaPlaneadaDataSource: dataSource           
         };
+    
 
         return service;
 
@@ -53,8 +63,19 @@
                 options.data.filter.filters = new Array();
             }
 
+            if (common.fechaCalculoPlanear === null) {
+                var today = new Date();
+                var tomorrow = new Date();
+                tomorrow.setDate(today.getDate() + 1);
+                common.fechaCalculoPlanear = tomorrow;
+            }
+
             options.data.filter.filters.push({ field: "idCiclo", value: common.ciclo });
             options.data.filter.filters.push({ field: "idUsuario", value: common.Usuario_Logueado.idAntiguo });
+            options.data.filter.filters.push({ field: "aniofecha", value: common.fechaCalculoPlanear.getFullYear() });
+            options.data.filter.filters.push({ field: "mesfecha", value: common.fechaCalculoPlanear.getMonth() + 1 });
+            options.data.filter.filters.push({ field: "diafecha", value: common.fechaCalculoPlanear.getDate() });
+            
 
             AzureMobileClient.getDataFilterskip('tm_visita_planeada', options.data.filter, options.data.take, options.data.skip, options.data.sort).then(
                     function (resultado) {
@@ -83,8 +104,10 @@
         };
 
         function dataSourceCreate(options) {            
-            options.data.datosExtra = jsonJSON.stringify(options.data.datosExtra);
-            var item = options.data;
+            options.data.datosExtra = JSON.stringify(options.data.datosExtra);
+            item = options.data;
+            generarEnterosFecha();
+
             AzureMobileClient.addDataAsync("tm_visita_planeada", item).then(
                 function(result){
                     options.success();
@@ -97,7 +120,8 @@
 
         function dataSourceUpdate(options) {            
             options.data.datosExtra = JSON.stringify(options.data.datosExtra);
-            var item = options.data;
+            item = options.data;
+            generarEnterosFecha();
             AzureMobileClient.updateDataAsync("tm_visita_planeada", item).then(
                 function (result) {
                     options.success();
@@ -109,12 +133,14 @@
         };
 
         function dataSourceDestroy(options) {
+            evtEliminarVisitaPlaneada.elemento = options.data;
             var item = new Object();
             item.id = options.data.id;
 
             AzureMobileClient.deleteDataAsync("tm_visita_planeada", item).then(
                 function (result) {
                     options.success();
+                    document.dispatchEvent(evtEliminarVisitaPlaneada);
                 },
                 function (err) {
                     options.error();
@@ -152,6 +178,13 @@
 
                 }
             }
+        };
+
+
+        function generarEnterosFecha() {
+            item.aniofecha = item.fecha.getFullYear();
+            item.mesfecha = item.fecha.getMonth() + 1;
+            item.diafecha = item.fecha.getDate();
         };
     }
 })();

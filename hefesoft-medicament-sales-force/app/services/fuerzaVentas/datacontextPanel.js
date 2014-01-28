@@ -45,7 +45,8 @@
 
         var service = {
             getPanel: getPanel,
-            panelDataSource: dataSource
+            panelDataSource: dataSource,
+            actualizar: actualizar
         };
 
         return service;
@@ -89,7 +90,7 @@
         };
 
         function dataSourceCreate(options) {            
-            options.data.datosExtra = jsonJSON.stringify(options.data.datosExtra);
+            options.data.datosExtra = JSON.stringify(options.data.datosExtra);
             var item = options.data;
             AzureMobileClient.addDataAsync("TM_Panel_Visitador", item).then(
                 function(result){
@@ -114,6 +115,18 @@
                 );
         };
 
+        function actualizar(item) {
+            item.datosExtra = JSON.stringify(item.datosExtra);            
+            AzureMobileClient.updateDataAsync("TM_Panel_Visitador", item).then(
+                function (result) {
+                    result;
+                },
+                function (err) {
+                    
+                }
+                );
+        };
+
         function dataSourceDestroy(options) {
             var item = new Object();
             item.id = options.data.id;
@@ -131,7 +144,10 @@
         function convertirDatosExtra(resultado) {
             for (var i in resultado) {
                 try {
-                    resultado[i].datosExtra = JSON.parse(resultado[i].datosExtra);
+                    // Revizarlo
+                    while (!(resultado[i].datosExtra instanceof Array)) {
+                        resultado[i].datosExtra = JSON.parse(resultado[i].datosExtra);
+                    }
                 } catch (e) {
 
                 }

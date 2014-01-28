@@ -45,7 +45,9 @@
             $cookieStore: $cookieStore,
             sidebar : null,
             Usuario_Logueado: null,
-            ciclo: 'D43B7F8D-DB0D-4784-92AC-F62DB01B6041'
+            ciclo: 'D43B7F8D-DB0D-4784-92AC-F62DB01B6041',
+            fechaCalculoPlanear: null,
+            validarSiEsFechaHoy: validarSiEsFechaHoy
         };
 
         return service;
@@ -125,5 +127,17 @@
         function textContains(text, searchText) {
             return text && -1 !== text.toLowerCase().indexOf(searchText.toLowerCase());
         }
+
+        function validarSiEsFechaHoy(fechaSeleccionada) {
+            var today = new Date();
+            if (fechaSeleccionada.getFullYear() == today.getFullYear() && fechaSeleccionada.getMonth() + 1 == today.getMonth() + 1 && fechaSeleccionada.getDate() == today.getDate()) {
+                return true;
+            }
+            else {
+                return false;
+            }
+
+        }
+
     }
 })();

@@ -32,8 +32,23 @@
                         return false;
                     }
                 });
+            },
+            existeElemento: function (e) {
+                var ds = this;
+                var resultado = false;
+                $.each(ds._data, function (idx, record) {
+                    if (record[e.keyField] == e.keyValue) {
+                        resultado = true;                        
+                    }
+                });
+
+                return resultado;
             }
         };
+
+
+
+
 
         $.extend(true, kendo.data.DataSource.prototype, dataSourceExtensions);
 

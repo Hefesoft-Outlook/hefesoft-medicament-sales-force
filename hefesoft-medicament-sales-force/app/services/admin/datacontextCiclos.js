@@ -81,7 +81,7 @@
 
             AzureMobileClient.addDataAsync("TP_Ciclos", item).then(
                 function(result){
-                        options.success();
+                    options.success(result);
                     },
                 function (err) {
                      options.error();
@@ -93,7 +93,7 @@
             var item = options.data;            
             AzureMobileClient.updateDataAsync("TP_Ciclos", item).then(
                 function (result) {
-                    options.success();
+                    options.success(result);
                 },
                 function (err) {
                     options.error();
@@ -107,7 +107,7 @@
 
             AzureMobileClient.deleteDataAsync("TP_Ciclos", item).then(
                 function (result) {
-                    options.success();
+                    options.success(item.id);
                 },
                 function (err) {
                     options.error();

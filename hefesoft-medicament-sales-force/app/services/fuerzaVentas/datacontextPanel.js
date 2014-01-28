@@ -94,7 +94,7 @@
             var item = options.data;
             AzureMobileClient.addDataAsync("TM_Panel_Visitador", item).then(
                 function(result){
-                    options.success();
+                    options.success(result);
                     },
                 function (err) {
                      options.error();
@@ -107,7 +107,7 @@
             var item = options.data;
             AzureMobileClient.updateDataAsync("TM_Panel_Visitador", item).then(
                 function (result) {
-                    options.success();
+                    options.success(result);
                 },
                 function (err) {
                     options.error();
@@ -133,7 +133,7 @@
 
             AzureMobileClient.deleteDataAsync("TM_Panel_Visitador", item).then(
                 function (result) {
-                    options.success();
+                    options.success(item.id);
                 },
                 function (err) {
                     options.error();

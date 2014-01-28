@@ -63,7 +63,7 @@
             var item = options.data;
             AzureMobileClient.addDataAsync("TP_Especialidades", item).then(
                 function(result){
-                        options.success();
+                    options.success(result);
                     },
                 function (err) {
                      options.error();
@@ -75,7 +75,7 @@
             var item = options.data;            
             AzureMobileClient.updateDataAsync("TP_Especialidades", item).then(
                 function (result) {
-                    options.success();
+                    options.success(result);
                 },
                 function (err) {
                     options.error();
@@ -89,7 +89,7 @@
 
             AzureMobileClient.deleteDataAsync("TP_Especialidades", item).then(
                 function (result) {
-                    options.success();
+                    options.success(item.id);
                 },
                 function (err) {
                     options.error();

@@ -72,7 +72,7 @@
             var item = options.data;
             AzureMobileClient.addDataAsync("TP_Farmacias", item).then(
                 function(result){
-                    options.success();
+                    options.success(result);
 
                     item = result;
                     var unidadVisita = new Object();
@@ -94,7 +94,7 @@
             var item = options.data;            
             AzureMobileClient.updateDataAsync("TP_Farmacias", item).then(
                 function (result) {
-                    options.success();
+                    options.success(result);
 
                     datacontextUnidadVisita.getUnidadVisitaById(result.id).then(
                         function (unidadVisita) {
@@ -123,7 +123,7 @@
 
             AzureMobileClient.deleteDataAsync("TP_Farmacias", item).then(
                 function (result) {
-                    options.success();
+                    options.success(item.id);
 
                     datacontextUnidadVisita.getUnidadVisitaById(result.id).then(
                         function (unidadVisita) {

@@ -110,8 +110,7 @@
 
             AzureMobileClient.addDataAsync("tm_visita_planeada", item).then(
                 function(result){
-                    options.success();
-                    dataSource.read(dataSource._data)
+                    options.success(result);                    
                     },
                 function (err) {
                      options.error();
@@ -125,7 +124,7 @@
             generarEnterosFecha();
             AzureMobileClient.updateDataAsync("tm_visita_planeada", item).then(
                 function (result) {
-                    options.success();
+                    options.success(result);
                 },
                 function (err) {
                     options.error();
@@ -140,7 +139,7 @@
 
             AzureMobileClient.deleteDataAsync("tm_visita_planeada", item).then(
                 function (result) {
-                    options.success();
+                    options.success(item.id);
                     document.dispatchEvent(evtEliminarVisitaPlaneada);
                 },
                 function (err) {

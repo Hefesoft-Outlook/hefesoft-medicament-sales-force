@@ -36,8 +36,7 @@
                     fields: {
                         id: { editable: false, validation: { required: false } },
                         nombre: { field: "nombre", type: "string", editable: false, validation: { required: false } },
-                        idUsuario: { field: "idUsuario", type: "string", validation: { required: true } },
-                        datosExtra: { field: "datosExtra", type: "string", validation: { required: true } },
+                        idUsuario: { field: "idUsuario", type: "string", validation: { required: true } },                        
                         idCiclo: { field: "idCiclo", type: "string", validation: { required: true } },
                         idPanelVisitador: { field: "idPanelVisitador", type: "string", validation: { required: true } },
                         fecha: { field: "fecha", type: "date", validation: { required: true } },
@@ -79,8 +78,7 @@
                     function (resultado) {
                         common.convertirDatosExtra(resultado);
                         common.mapearNombres(resultado);
-                        deferred.resolve(resultado);
-                        document.dispatchEvent(evtVisitasPlaneadasCargadas);
+                        deferred.resolve(resultado);                        
                     },
                     function (error) {
                         deferred.reject(error);
@@ -95,6 +93,7 @@
             getVisitaRealizada(options).then(
                         function (result) {                            
                             options.success(result);
+                            document.dispatchEvent(evtVisitasPlaneadasCargadas);
                         },
                         function (error) {
                             options.error(error);
@@ -132,14 +131,12 @@
         };
 
         function dataSourceDestroy(options) {
-            evtEliminarVisitaPlaneada.elemento = options.data;
             var item = new Object();
             item.id = options.data.id;
 
             AzureMobileClient.deleteDataAsync("tm_visita_realizada", item).then(
                 function (result) {
                     options.success(item.id);
-                    document.dispatchEvent(evtEliminarVisitaPlaneada);
                 },
                 function (err) {
                     options.error();

@@ -146,7 +146,7 @@
                 },
                 columns:[                    
                     { field: "nombre", title: "Nombre"},
-                    { field: "fecha", title: "Hora", format: "{0:HH:mm}", editor: timeEditor },
+                    { field: "fecha", title: "Hora", format: "{0:HH:mm}", editor: common.timeEditor },
                     { command: ["edit", "destroy"] }
                 ],
                 selectable: "row",
@@ -174,12 +174,6 @@
                     vm.visitaPlaneadaDataSource.read();
                 }
             });
-        }
-
-        function timeEditor(container, options) {
-            $('<input data-text-field="' + options.field + '" data-value-field="' + options.field + '" data-bind="value:' + options.field + '" data-format="' + options.format + '"/>')
-                    .appendTo(container)
-                    .kendoTimePicker({});
         }
     }
 })();

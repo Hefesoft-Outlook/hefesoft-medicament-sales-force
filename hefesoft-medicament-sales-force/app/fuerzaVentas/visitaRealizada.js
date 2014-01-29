@@ -22,15 +22,54 @@
                 .then(function (result) {                   
                     log('Registro visitas');
 
+                    $("#gridRegistroVisita").kendoGrid({
+                        dataSource: datacontextVisitaRealizada.visitaRealizadaDataSource,
+                        editable: {
+                            mode: "popup",
+                            //createAt: "top"
+                        },
+                        columns: [
+                            { field: "nombre", title: "Nombre" },
+                            { field: "fecha", title: "Hora", format: "{0:HH:mm}", editor: common.timeEditor },
+                        ],
+                        selectable: "row",                                              
+                        height: 600
+                    });
 
-                    datacontextVisitaPlaneada.getVisitaPlaneadasDia().then(
-                            function (result) {
-                                result;
-                            }
-                        );
-
-
+                    document.addEventListener("VisitasPlaneadasCargadas", visitasPlaneadasCargadas, false);
                 });
         }
+
+        function visitasPlaneadasCargadas() {
+
+            document.removeEventListener("VisitasPlaneadasCargadas", visitasPlaneadasCargadas, false);
+            datacontextVisitaPlaneada.getVisitaPlaneadasDia().then(
+                            function (result) {
+
+                                var resultado = new Array();
+                                for (var i in result) {
+
+                                    if (result[i].nombre !== undefined) {
+
+                                        
+
+                                        datacontextVisitaRealizada.visitaRealizadaDataSource.insert(
+                                        {
+                                            nombre: result[i].nombre,
+                                            fecha: result[i].fecha,
+                                            datosExtra: result[i].datosExtra,
+                                        }
+                                        );
+                                    }
+                                }
+                            }
+                        );
+        };
+
+        vm.salvar = function () {
+            var grid = $("#gridRegistroVisita").data("kendoGrid");
+            grid.saveChanges();
+        };
+
     }
 })();

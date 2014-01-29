@@ -9,6 +9,9 @@
         var $q = common.$q;      
         var item = null;
 
+        var evtVisitasPlaneadasCargadas = document.createEvent("Event");
+        evtVisitasPlaneadasCargadas.initEvent("VisitasPlaneadasCargadas", true, true);        
+        evtVisitasPlaneadasCargadas.elemento = null;
 
         var dataSource = new kendo.data.DataSource({
             transport: {
@@ -34,6 +37,7 @@
                         id: { editable: false, validation: { required: false } },
                         nombre: { field: "nombre", type: "string", editable: false, validation: { required: false } },
                         idUsuario: { field: "idUsuario", type: "string", validation: { required: true } },
+                        datosExtra: { field: "datosExtra", type: "string", validation: { required: true } },
                         idCiclo: { field: "idCiclo", type: "string", validation: { required: true } },
                         idPanelVisitador: { field: "idPanelVisitador", type: "string", validation: { required: true } },
                         fecha: { field: "fecha", type: "date", validation: { required: true } },
@@ -60,10 +64,8 @@
             }
 
             if (common.fechaCalculoPlanear === null) {
-                var today = new Date();
-                var tomorrow = new Date();
-                tomorrow.setDate(today.getDate() + 1);
-                common.fechaCalculoPlanear = tomorrow;
+                var today = new Date();                
+                common.fechaCalculoPlanear = today;
             }
 
             options.data.filter.filters.push({ field: "idCiclo", value: common.ciclo });
@@ -78,6 +80,7 @@
                         common.convertirDatosExtra(resultado);
                         common.mapearNombres(resultado);
                         deferred.resolve(resultado);
+                        document.dispatchEvent(evtVisitasPlaneadasCargadas);
                     },
                     function (error) {
                         deferred.reject(error);
@@ -89,7 +92,7 @@
 
 
         function dataSourceRead(options) {
-            getVisitaPlaneada(options).then(
+            getVisitaRealizada(options).then(
                         function (result) {                            
                             options.success(result);
                         },

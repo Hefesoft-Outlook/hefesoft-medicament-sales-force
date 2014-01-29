@@ -49,7 +49,8 @@
             fechaCalculoPlanear: null,
             validarSiEsFechaHoy: validarSiEsFechaHoy,
             convertirDatosExtra: convertirDatosExtra,
-            mapearNombres: mapearNombres
+            mapearNombres: mapearNombres,
+            timeEditor: timeEditor
         };
 
         return service;
@@ -175,5 +176,10 @@
             }
         };
 
+        function timeEditor(container, options) {
+            $('<input data-text-field="' + options.field + '" data-value-field="' + options.field + '" data-bind="value:' + options.field + '" data-format="' + options.format + '"/>')
+                    .appendTo(container)
+                    .kendoTimePicker({});
+        }
     }
 })();

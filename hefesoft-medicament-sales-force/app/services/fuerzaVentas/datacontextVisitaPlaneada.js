@@ -10,8 +10,7 @@
         var item = null;
 
         var evtEliminarVisitaPlaneada = document.createEvent("Event");
-        evtEliminarVisitaPlaneada.initEvent("eliminarVisitaPlaneada", true, true);
-        // custom param
+        evtEliminarVisitaPlaneada.initEvent("eliminarVisitaPlaneada", true, true);        
         evtEliminarVisitaPlaneada.elemento = null;
             
 

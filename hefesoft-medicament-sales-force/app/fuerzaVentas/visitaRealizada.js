@@ -41,7 +41,6 @@
         }
 
         function visitasPlaneadasCargadas() {
-
             document.removeEventListener("VisitasPlaneadasCargadas", visitasPlaneadasCargadas, false);
             datacontextVisitaPlaneada.getVisitaPlaneadasDia().then(
                             function (result) {
@@ -51,13 +50,14 @@
 
                                     if (result[i].nombre !== undefined) {
 
-                                        
+                                        var elementoEncontrado = datacontextVisitaRealizada.visitaRealizadaDataSource.get(result[i].idPanel);
 
                                         datacontextVisitaRealizada.visitaRealizadaDataSource.insert(
                                         {
                                             nombre: result[i].nombre,
                                             fecha: result[i].fecha,
                                             datosExtra: result[i].datosExtra,
+                                            idPanel: result[i].id,
                                         }
                                         );
                                     }

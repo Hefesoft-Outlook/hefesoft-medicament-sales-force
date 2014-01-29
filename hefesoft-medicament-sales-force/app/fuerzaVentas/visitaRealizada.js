@@ -6,13 +6,18 @@
     function visitaRealizada(common, $scope, datacontextVisitaPlaneada, datacontextVisitaRealizada) {
         var getLogFn = common.logger.getLogFn;
         var log = getLogFn(controllerId);
-
+        var win = null;
         
         var vm = this;        
         vm.title = 'Registro';       
 
         vm.visitaPlaneadaDataSource = datacontextVisitaPlaneada.visitaPlaneadaDataSource;
-        vm.visitaRealizadaDataSource = datacontextVisitaRealizada.visitaRealizadaDataSource;        
+        vm.visitaRealizadaDataSource = datacontextVisitaRealizada.visitaRealizadaDataSource;
+
+        vm.buscar = function (e) {            
+            win.center();
+            win.open();
+        }
       
         activate();
 
@@ -20,9 +25,39 @@
             common.activateController([], controllerId)
                 .then(function (result) {
                     inicializarElementos();
+
+                    win = $("#popUpPanel").kendoWindow({
+                        height: "400px",
+                        title: "Panel Visitador",
+                        visible: false,
+                        width: "800px"
+                    }).data("kendoWindow");
+
+                    document.addEventListener("contactoAgregado", contactoAgregado, false);
+
                     log('Registro visitas');
                 });
         }
+
+
+        function contactoAgregado(e) {
+            vm.filaSeleccionada = e.elemento[0];           
+
+            datacontextVisitaRealizada.visitaRealizadaDataSource.insert(
+            {
+                nombre: vm.filaSeleccionada.nombre,
+                fecha: new Date(),
+                datosExtra: vm.filaSeleccionada.datosExtra,
+                idPanelVisitador: vm.filaSeleccionada.id,
+                idCiclo: common.ciclo,
+                idUsuario: common.Usuario_Logueado.idAntiguo
+            });
+
+            var grid = $("#gridRegistroVisita").data("kendoGrid");
+            grid.saveChanges();
+
+        }
+
 
         function visitasPlaneadasCargadas() {
             document.removeEventListener("VisitasPlaneadasCargadas", visitasPlaneadasCargadas, false);

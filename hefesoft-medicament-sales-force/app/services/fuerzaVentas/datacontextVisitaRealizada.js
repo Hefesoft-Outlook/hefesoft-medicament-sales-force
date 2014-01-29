@@ -13,6 +13,10 @@
         evtVisitasPlaneadasCargadas.initEvent("VisitasPlaneadasCargadas", true, true);        
         evtVisitasPlaneadasCargadas.elemento = null;
 
+        var evtEliminarVisitaRealizada = document.createEvent("Event");
+        evtEliminarVisitaRealizada.initEvent("eliminarVisitaRealizada", true, true);
+        evtEliminarVisitaRealizada.elemento = null;
+
         var dataSource = new kendo.data.DataSource({
             transport: {
                 read: function (options) { dataSourceRead(options); },
@@ -137,6 +141,10 @@
             AzureMobileClient.deleteDataAsync("tm_visita_realizada", item).then(
                 function (result) {
                     options.success(item.id);
+                    item.id = options.data.idPanelVisitador;
+
+                    evtEliminarVisitaRealizada.elemento = item;
+                    document.dispatchEvent(evtEliminarVisitaRealizada);
                 },
                 function (err) {
                     options.error();

@@ -2,16 +2,20 @@
     <section class="matter">
         <div class="container-fluid">
             <div class="row-fluid">
+
+            <a data-ng-click="vm.buscar()"> Buscar unidad Visita</a>
                 <div class="widget wviolet span12">
                     <div data-cc-widget-header title="Registro"></div>                    
                     <div class="widget-content user">
                         <div id="gridRegistroVisita"></div>
                     </div>
                 </div>
-              
             </div>
         </div>
 
-    </section>
+        <div id="popUpPanel">
+            <div data-ng-include="'/app/controles/ctrPlaneacion.html'"></div>
+        </div>
+</section>
 </section>
 

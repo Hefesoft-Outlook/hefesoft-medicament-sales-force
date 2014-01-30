@@ -20,7 +20,7 @@
                 destroy: function (options) { dataSourceDestroy(options) },
             },
             autoSync: false,
-            pageSize: 20,
+            pageSize: 400,
             serverPaging: true,            
             serverSorting: true
             , schema: {
@@ -53,6 +53,11 @@
 
         function getPanel(options) {
             var deferred = $q.defer();
+
+            if (options.data.sort === undefined) {
+                options.data.sort = new Array();
+                options.data.sort.push({ dir: 'asc', field: 'nombre' });
+            }            
 
             if (options.data.filter === undefined) {
                 options.data.filter = new Object();

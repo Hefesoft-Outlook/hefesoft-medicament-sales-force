@@ -82,6 +82,7 @@
                     function (resultado) {
                         common.convertirDatosExtra(resultado);
                         common.mapearNombres(resultado);
+                        resultado.sort(common.sortNombre);
                         deferred.resolve(resultado);                        
                     },
                     function (error) {

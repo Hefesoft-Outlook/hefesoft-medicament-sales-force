@@ -50,7 +50,8 @@
             validarSiEsFechaHoy: validarSiEsFechaHoy,
             convertirDatosExtra: convertirDatosExtra,
             mapearNombres: mapearNombres,
-            timeEditor: timeEditor
+            timeEditor: timeEditor,
+            sortNombre: sortNombre
         };
 
         return service;
@@ -201,5 +202,14 @@
                     .appendTo(container)
                     .kendoTimePicker({});
         }
+
+        function sortNombre(a, b) {
+            if (a.nombre < b.nombre)
+                return -1;
+            if (a.nombre > b.nombre)
+                return 1;
+            return 0;
+        }
+
     }
 })();

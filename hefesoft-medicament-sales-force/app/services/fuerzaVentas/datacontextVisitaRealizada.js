@@ -142,8 +142,8 @@
             AzureMobileClient.deleteDataAsync("tm_visita_realizada", item).then(
                 function (result) {
                     options.success(item.id);
-                    item.id = options.data.idPanelVisitador;
-
+                    item.idPanelVisitador = options.data.idPanelVisitador;
+                    item["accionEjecutada"] = false;
                     evtEliminarVisitaRealizada.elemento = item;
                     document.dispatchEvent(evtEliminarVisitaRealizada);
                 },

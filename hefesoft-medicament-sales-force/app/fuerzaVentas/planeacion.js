@@ -1,13 +1,14 @@
 ﻿(function () {
     'use strict';
     var controllerId = 'planeacion';
-    angular.module('app').controller(controllerId, ['common', '$scope', 'datacontextVisitaPlaneada', '$http', planeacion]);
+    angular.module('app').controller(controllerId, ['common', '$scope', 'datacontextVisitaPlaneada', '$http', 'spinner', planeacion]);
 
-    function planeacion(common, $scope, datacontextVisitaPlaneada, $http) {
+    function planeacion(common, $scope, datacontextVisitaPlaneada, $http, spinner) {
         var getLogFn = common.logger.getLogFn;
         var log = getLogFn(controllerId);
-
+        common.fechaCalculoPlanear = null;
         common.eliminarControles();
+        common.eliminarEventos();
 
         var today = new Date();
         var tomorrow = new Date();
@@ -31,45 +32,47 @@
                     // Inicializa los elementos para el panel visistado lo muevo a una funcion por orden                    
                     gridVisitaPlaneadaVisitador();
                     dataPickerFecha();
-
                     document.addEventListener("contactoAgregado", contactoAgregado, false);
                 });
         }
 
         function contactoAgregado(e) {
-
             vm.filaSeleccionada = e.elemento;
 
-            for (var i in vm.filaSeleccionada) {
-
-                //Se valida que no se pueda planear el dia actual
-                if (common.validarSiEsFechaHoy(vm.fechaSeleccionada)) {
-                    log("No es posible planear una visita en el dia en curso");
-                }
-                else {
-
-                    // Validar que el elemento no se encuentre en el listado
-                    var existe = vm.visitaPlaneadaDataSource.existeElemento({ keyField: 'idPanelVisitador', keyValue: vm.filaSeleccionada[i].id });
-
-                    if (!existe) {
-
-                        if (vm.filaSeleccionada[i].contactosPendientes <= vm.filaSeleccionada[i].contactosCiclo) {                            
-                            // Inserta el registro en visita planeada
-                            vm.visitaPlaneadaDataSource.insert({ nombre: vm.filaSeleccionada[i].nombre, idUsuario: common.Usuario_Logueado.idAntiguo, idCiclo: common.ciclo, idPanelVisitador: vm.filaSeleccionada[i].id, fecha: vm.fechaSeleccionada, datosExtra: vm.filaSeleccionada[i].datosExtra });
-                        }
-                        else {
-                            log("Numero de contactos superados");
-                        }
-                    }
-                    else {
-                        log("El elemento ya se encuentra para esta fecha");
-                    }
-                }
-            };
-
+            spinner.spinnerHide();
 
             var gridVisitaPlaneada = $("#gridVisitaPlaneada").data("kendoGrid");
-            gridVisitaPlaneada.saveChanges();            
+            if (gridVisitaPlaneada !== undefined) {
+
+                for (var i in vm.filaSeleccionada) {
+
+                    //Se valida que no se pueda planear el dia actual
+                    if (common.validarSiEsFechaHoy(vm.fechaSeleccionada)) {
+                        log("No es posible planear una visita en el dia en curso");
+                    }
+                    else {
+
+                        // Validar que el elemento no se encuentre en el listado
+                        var existe = vm.visitaPlaneadaDataSource.existeElemento({ keyField: 'idPanelVisitador', keyValue: vm.filaSeleccionada[i].id });
+
+                        if (!existe) {
+
+                            if (vm.filaSeleccionada[i].contactosPendientes <= vm.filaSeleccionada[i].contactosCiclo) {
+                                // Inserta el registro en visita planeada
+                                vm.visitaPlaneadaDataSource.insert({ nombre: vm.filaSeleccionada[i].nombre, idUsuario: common.Usuario_Logueado.idAntiguo, idCiclo: common.ciclo, idPanelVisitador: vm.filaSeleccionada[i].id, fecha: vm.fechaSeleccionada, datosExtra: vm.filaSeleccionada[i].datosExtra });
+                            }
+                            else {
+                                log("Numero de contactos superados");
+                            }
+                        }
+                        else {
+                            log("El elemento ya se encuentra para esta fecha");
+                        }
+                    }
+                };
+
+                gridVisitaPlaneada.saveChanges();
+            }
         }
 
         function cargarTemplate() {

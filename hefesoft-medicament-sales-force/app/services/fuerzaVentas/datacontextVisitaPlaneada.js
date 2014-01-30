@@ -165,6 +165,7 @@
 
         function dataSourceDestroy(options) {
             evtEliminarVisitaPlaneada.elemento = options.data;
+            item["accionEjecutada"] = false;
             var item = new Object();
             item.id = options.data.id;
 

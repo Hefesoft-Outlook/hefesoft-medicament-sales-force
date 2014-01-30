@@ -52,30 +52,18 @@
             mapearNombres: mapearNombres,
             timeEditor: timeEditor,
             sortNombre: sortNombre,
-            eliminarControles: eliminarControles
+            eliminarControles: eliminarControles,
+            eliminarEventos: eliminarEventos
         };
 
         return service;
 
         function activateController(promises, controllerId) {
-            return $q.all(promises).then(function (eventArgs) {
-                limpiarVariablesEventos();                
+            return $q.all(promises).then(function (eventArgs) {                
                 var data = { controllerId: controllerId };                
                 $broadcast(commonConfig.config.controllerActivateSuccessEvent, data);
             });
-        }
-
-        function limpiarVariablesEventos() {
-            fechaCalculoPlanear: null;
-            try {
-                document.removeEventListener("VisitasPlaneadasCargadas", visitasPlaneadasCargadas, false);
-                document.removeEventListener("contactoAgregado", visitasPlaneadasCargadas, false);
-                document.removeEventListener("actividadJustificadaAgregada", visitasPlaneadasCargadas, false);                
-            }
-            catch (e) {
-
-            }
-        }
+        }       
 
         function eliminarControles() {
             try {
@@ -85,6 +73,16 @@
 
             }
         }
+
+
+        function eliminarEventos() {
+            try { document.removeEventListener("eliminarVisitaPlaneada", visitaPlaneadaEliminada, false); } catch (e) { };
+            try { document.removeEventListener("eliminarVisitaRealizada", visitaPlaneadaEliminada, false); } catch (e) { };
+            try { document.removeEventListener("VisitasPlaneadasCargadas", visitasPlaneadasCargadas, false); } catch (e) { };
+            try { document.removeEventListener("contactoAgregado", visitasPlaneadasCargadas, false); } catch (e) { };
+            try { document.removeEventListener("actividadJustificadaAgregada", visitasPlaneadasCargadas, false); } catch (e) { };            
+        }
+
 
         function $broadcast() {
             return $rootScope.$broadcast.apply($rootScope, arguments);

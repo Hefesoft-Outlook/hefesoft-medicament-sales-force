@@ -35,6 +35,7 @@
         function showDetails(e) {
             e.preventDefault();
             var dataItem = this.dataItem($(e.currentTarget).closest("tr"));
+            dataItem["accionEjecutada"] = false;
             evtActividadJustificadaAgregada.elemento = dataItem;
 
             document.dispatchEvent(evtActividadJustificadaAgregada);

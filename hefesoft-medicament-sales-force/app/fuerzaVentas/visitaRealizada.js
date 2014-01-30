@@ -1,11 +1,15 @@
 ﻿(function () {
     'use strict';
     var controllerId = 'visitaRealizada';
-    angular.module('app').controller(controllerId, ['common', '$scope', 'datacontextVisitaPlaneada', 'datacontextVisitaRealizada', '$http', visitaRealizada]);
+    angular.module('app').controller(controllerId, ['common', '$scope', 'datacontextVisitaPlaneada', 'datacontextVisitaRealizada', '$http', 'spinner', visitaRealizada]);
 
-    function visitaRealizada(common, $scope, datacontextVisitaPlaneada, datacontextVisitaRealizada) {
+    function visitaRealizada(common, $scope, datacontextVisitaPlaneada, datacontextVisitaRealizada, $http, spinner) {
         var getLogFn = common.logger.getLogFn;
         var log = getLogFn(controllerId);
+
+        common.fechaCalculoPlanear = null;
+        common.eliminarEventos();
+
         var win = null;
         var winActividadJustificada = null;
         
@@ -56,32 +60,41 @@
         }
 
         function actividadJustificadaAgregada(e) {
+            
+            if (e.elemento.accionEjecutada === false) {
+                e.elemento.accionEjecutada = true;
+                var datosExtra = JSON.stringify(e.elemento);
 
-            var datosExtra = JSON.stringify(e.elemento);
+                datacontextVisitaRealizada.visitaRealizadaDataSource.insert({ nombre: e.elemento.nombre, idUsuario: common.Usuario_Logueado.idAntiguo, idCiclo: common.ciclo, fecha: new Date(), idActividadJustificada: e.elemento.id, esActividadJustificada: true, datosExtra: datosExtra });
 
-            datacontextVisitaRealizada.visitaRealizadaDataSource.insert({ nombre: e.elemento.nombre, idUsuario: common.Usuario_Logueado.idAntiguo, idCiclo: common.ciclo, fecha: new Date(), idActividadJustificada: e.elemento.id, esActividadJustificada: true, datosExtra: datosExtra });
-
-            var grid = $("#gridRegistroVisita").data("kendoGrid");
-            grid.saveChanges();
+                var grid = $("#gridRegistroVisita").data("kendoGrid");
+                grid.saveChanges();
+            }
         }
 
 
         function contactoAgregado(e) {
-            vm.filaSeleccionada = e.elemento[0];           
-            var grid = $("#gridRegistroVisita").data("kendoGrid");
-           
-            if (grid !== undefined) {
-                datacontextVisitaRealizada.visitaRealizadaDataSource.insert(
-                {
-                    nombre: vm.filaSeleccionada.nombre,
-                    fecha: new Date(),
-                    datosExtra: vm.filaSeleccionada.datosExtra,
-                    idPanelVisitador: vm.filaSeleccionada.id,
-                    idCiclo: common.ciclo,
-                    idUsuario: common.Usuario_Logueado.idAntiguo
-                });
 
-                grid.saveChanges();
+            spinner.spinnerHide();
+
+            if (e.elemento.accionEjecutada === false) {
+                e.elemento.accionEjecutada = true;
+                vm.filaSeleccionada = e.elemento[0];
+                var grid = $("#gridRegistroVisita").data("kendoGrid");
+
+                if (grid !== undefined) {
+                    datacontextVisitaRealizada.visitaRealizadaDataSource.insert(
+                    {
+                        nombre: vm.filaSeleccionada.nombre,
+                        fecha: new Date(),
+                        datosExtra: vm.filaSeleccionada.datosExtra,
+                        idPanelVisitador: vm.filaSeleccionada.id,
+                        idCiclo: common.ciclo,
+                        idUsuario: common.Usuario_Logueado.idAntiguo
+                    });
+
+                    grid.saveChanges();
+                }
             }
         }
 

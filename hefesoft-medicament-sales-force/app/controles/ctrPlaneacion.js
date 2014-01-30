@@ -1,9 +1,10 @@
 ﻿(function () {
     'use strict';
     var controllerId = 'ctrPlaneacion';
-    angular.module('app').controller(controllerId, ['common', '$scope', 'datacontextPanel', '$http', ctrPlaneacion]);
+    angular.module('app').controller(controllerId, ['common', '$scope', 'datacontextPanel', '$http', 'spinner', ctrPlaneacion]);
 
-    function ctrPlaneacion(common, $scope, datacontextPanel, $http) {
+    function ctrPlaneacion(common, $scope, datacontextPanel, $http, spinner) {
+
         var getLogFn = common.logger.getLogFn;
         var log = getLogFn(controllerId);
 
@@ -38,16 +39,18 @@
         function visitaPlaneadaEliminada(e) {
             var item = e.elemento;
 
-            var dataItem = vm.planecionDataSource.get(item.id);
-            if (item !== undefined) {
+            var dataItem = vm.planecionDataSource.get(item.idPanelVisitador);
+            if (item !== undefined && item.accionEjecutada === false) {
+
+                e.elemento.accionEjecutada = true;
+
                 vm.planecionDataSource.updateField({ keyField: 'id', keyValue: dataItem.id, updateField: 'contactosPendientes', updateValue: dataItem.contactosPendientes - 1 });
 
                 var grid = $("#gridPanelVisitador").data("kendoGrid");
                 grid.refresh();
-            }
 
-           
-            datacontextPanel.actualizar(dataItem);
+                datacontextPanel.actualizar(dataItem);                
+            }
         }
 
         function cargarTemplate() {
@@ -89,8 +92,8 @@
             });
 
             $("#gridPanelVisitador").on("click", ".k-grid-agregar", function () {
-
                 evtContactoAgregado.elemento = vm.filaSeleccionada;
+                evtContactoAgregado.elemento["accionEjecutada"] = false;
 
                 for (var i in vm.filaSeleccionada) {
 
@@ -105,6 +108,7 @@
 
                                 // Aca va un evento
                                 document.dispatchEvent(evtContactoAgregado);
+                                spinner.spinnerShow();
                             }
                             else {
                                 log("Numero de contactos superados");
@@ -119,7 +123,7 @@
 
 
                 vm.planecionDataSource.sync();
-                var dataItem = vm.planecionDataSource.get(vm.filaSeleccionada[i].id);
+                var dataItem = vm.planecionDataSource.get(vm.filaSeleccionada[0].id);
                 datacontextPanel.actualizar(dataItem);
 
             });

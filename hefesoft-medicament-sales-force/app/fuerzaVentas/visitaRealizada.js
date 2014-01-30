@@ -9,6 +9,8 @@
         var win = null;
         var winActividadJustificada = null;
         
+        common.eliminarControles();
+
         var vm = this;        
         vm.title = 'Registro';       
 
@@ -66,20 +68,21 @@
 
         function contactoAgregado(e) {
             vm.filaSeleccionada = e.elemento[0];           
-
-            datacontextVisitaRealizada.visitaRealizadaDataSource.insert(
-            {
-                nombre: vm.filaSeleccionada.nombre,
-                fecha: new Date(),
-                datosExtra: vm.filaSeleccionada.datosExtra,
-                idPanelVisitador: vm.filaSeleccionada.id,
-                idCiclo: common.ciclo,
-                idUsuario: common.Usuario_Logueado.idAntiguo
-            });
-
             var grid = $("#gridRegistroVisita").data("kendoGrid");
-            grid.saveChanges();
+           
+            if (grid !== undefined) {
+                datacontextVisitaRealizada.visitaRealizadaDataSource.insert(
+                {
+                    nombre: vm.filaSeleccionada.nombre,
+                    fecha: new Date(),
+                    datosExtra: vm.filaSeleccionada.datosExtra,
+                    idPanelVisitador: vm.filaSeleccionada.id,
+                    idCiclo: common.ciclo,
+                    idUsuario: common.Usuario_Logueado.idAntiguo
+                });
 
+                grid.saveChanges();
+            }
         }
 
 

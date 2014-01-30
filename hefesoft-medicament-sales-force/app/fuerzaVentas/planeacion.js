@@ -7,6 +7,8 @@
         var getLogFn = common.logger.getLogFn;
         var log = getLogFn(controllerId);
 
+        common.eliminarControles();
+
         var today = new Date();
         var tomorrow = new Date();
         tomorrow.setDate(today.getDate() + 1);       

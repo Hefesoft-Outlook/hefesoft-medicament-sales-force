@@ -51,14 +51,15 @@
             convertirDatosExtra: convertirDatosExtra,
             mapearNombres: mapearNombres,
             timeEditor: timeEditor,
-            sortNombre: sortNombre
+            sortNombre: sortNombre,
+            eliminarControles: eliminarControles
         };
 
         return service;
 
         function activateController(promises, controllerId) {
             return $q.all(promises).then(function (eventArgs) {
-                limpiarVariablesEventos();
+                limpiarVariablesEventos();                
                 var data = { controllerId: controllerId };                
                 $broadcast(commonConfig.config.controllerActivateSuccessEvent, data);
             });
@@ -69,9 +70,18 @@
             try {
                 document.removeEventListener("VisitasPlaneadasCargadas", visitasPlaneadasCargadas, false);
                 document.removeEventListener("contactoAgregado", visitasPlaneadasCargadas, false);
-                document.removeEventListener("actividadJustificadaAgregada", visitasPlaneadasCargadas, false);
+                document.removeEventListener("actividadJustificadaAgregada", visitasPlaneadasCargadas, false);                
             }
             catch (e) {
+
+            }
+        }
+
+        function eliminarControles() {
+            try {
+                $("#gridPanelVisitador").remove();
+                $("#gridBuscadorActividadesJustificadas").remove();                
+            } catch (e) {
 
             }
         }

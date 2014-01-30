@@ -93,7 +93,7 @@
                     settings: {
                         nav: 6,
                         content: '<i class="icon-lock"></i> usuarios',
-                        rol: ['Identificados']
+                        rol: ['admin']
                     }
                 }
             }, {
@@ -104,7 +104,7 @@
                     settings: {
                         nav: 6,
                         content: '<i class="icon-lock"></i> planeacion',
-                        rol: ['Identificados']
+                        rol: ['admin']
                     }
                 }
             }, {
@@ -113,9 +113,20 @@
                     title: 'registro',
                     templateUrl: 'app/fuerzaVentas/visitaRealizada.html',
                     settings: {
-                        nav: 6,
+                        nav: 7,
                         content: '<i class="icon-lock"></i> registro',
-                        rol: ['Identificados']
+                        rol: ['admin']
+                    }
+                }
+            },{
+                url: '/actividadJustificada',
+                config: {
+                    title: 'registro',
+                    templateUrl: 'app/admin/actividadJustificada.html',
+                    settings: {
+                        nav: 7,
+                        content: '<i class="icon-lock"></i> Actividad Justificada',
+                        rol: ['admin']
                     }
                 }
             }

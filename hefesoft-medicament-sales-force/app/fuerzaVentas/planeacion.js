@@ -31,7 +31,6 @@
                     dataPickerFecha();
 
                     document.addEventListener("contactoAgregado", contactoAgregado, false);
-
                 });
         }
 
@@ -52,7 +51,7 @@
 
                     if (!existe) {
 
-                        if (vm.filaSeleccionada[i].contactosPendientes < vm.filaSeleccionada[i].contactosCiclo) {                            
+                        if (vm.filaSeleccionada[i].contactosPendientes <= vm.filaSeleccionada[i].contactosCiclo) {                            
                             // Inserta el registro en visita planeada
                             vm.visitaPlaneadaDataSource.insert({ nombre: vm.filaSeleccionada[i].nombre, idUsuario: common.Usuario_Logueado.idAntiguo, idCiclo: common.ciclo, idPanelVisitador: vm.filaSeleccionada[i].id, fecha: vm.fechaSeleccionada, datosExtra: vm.filaSeleccionada[i].datosExtra });
                         }
@@ -69,7 +68,7 @@
 
             var gridVisitaPlaneada = $("#gridVisitaPlaneada").data("kendoGrid");
             gridVisitaPlaneada.saveChanges();            
-        }        
+        }
 
         function cargarTemplate() {
             var $q = common.$q;

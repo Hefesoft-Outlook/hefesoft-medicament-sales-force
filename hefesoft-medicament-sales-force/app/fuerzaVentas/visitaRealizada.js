@@ -7,6 +7,7 @@
         var getLogFn = common.logger.getLogFn;
         var log = getLogFn(controllerId);
         var win = null;
+        var winActividadJustificada = null;
         
         var vm = this;        
         vm.title = 'Registro';       
@@ -17,6 +18,11 @@
         vm.buscar = function (e) {            
             win.center();
             win.open();
+        }
+
+        vm.actividadJustificada = function (e) {
+            winActividadJustificada.center();
+            winActividadJustificada.open();
         }
       
         activate();
@@ -33,10 +39,28 @@
                         width: "800px"
                     }).data("kendoWindow");
 
+                    winActividadJustificada = $("#popUpActividadJustificada").kendoWindow({
+                        height: "400px",
+                        title: "Actividades Justificadas",
+                        visible: false,
+                        width: "600px"
+                    }).data("kendoWindow");
+
                     document.addEventListener("contactoAgregado", contactoAgregado, false);
+                    document.addEventListener("actividadJustificadaAgregada", actividadJustificadaAgregada, false);
 
                     log('Registro visitas');
                 });
+        }
+
+        function actividadJustificadaAgregada(e) {
+
+            var datosExtra = JSON.stringify(e.elemento);
+
+            datacontextVisitaRealizada.visitaRealizadaDataSource.insert({ nombre: e.elemento.nombre, idUsuario: common.Usuario_Logueado.idAntiguo, idCiclo: common.ciclo, fecha: new Date(), idActividadJustificada: e.elemento.id, esActividadJustificada: true, datosExtra: datosExtra });
+
+            var grid = $("#gridRegistroVisita").data("kendoGrid");
+            grid.saveChanges();
         }
 
 

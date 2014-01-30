@@ -1,9 +1,13 @@
 ﻿<section class="mainbar" data-ng-controller="visitaRealizada as vm">
     <section class="matter">
         <div class="container-fluid">
-            <div class="row-fluid">
 
-            <a data-ng-click="vm.buscar()"> Buscar unidad Visita</a>
+            <div>
+                <a data-ng-click="vm.buscar()"> Buscar unidad Visita</a>
+                <a data-ng-click="vm.actividadJustificada()"> Actividades Justificadas</a>
+            </div>
+
+            <div class="row-fluid">
                 <div class="widget wviolet span12">
                     <div data-cc-widget-header title="Registro"></div>                    
                     <div class="widget-content user">
@@ -15,6 +19,10 @@
 
         <div id="popUpPanel">
             <div data-ng-include="'/app/controles/ctrPlaneacion.html'"></div>
+        </div>
+
+        <div id="popUpActividadJustificada">
+            <div data-ng-include="'/app/controles/ctrActividadJustificada.html'"></div>
         </div>
 </section>
 </section>

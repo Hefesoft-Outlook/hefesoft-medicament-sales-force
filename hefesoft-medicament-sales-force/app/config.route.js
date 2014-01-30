@@ -31,6 +31,17 @@
                     }
                 }
             }, {
+                url: '/actividadJustificada',
+                config: {
+                    title: 'actividadJustificada',
+                    templateUrl: 'app/admin/actividadJustificada.html',
+                    settings: {
+                        nav: 2,
+                        content: '<i class="icon-lock"></i> Actividad Justificada',
+                        rol: ['admin']
+                    }
+                }
+            } , {
                 url: '/ciclos',
                 config: {
                     title: 'ciclos',
@@ -58,7 +69,7 @@
                     title: 'farmacias',
                     templateUrl: 'app/admin/farmacias.html',
                     settings: {
-                        nav: 4,
+                        nav: 5,
                         content: '<i class="icon-lock"></i> farmacias',
                         rol: ['admin']
                     }
@@ -69,7 +80,7 @@
                     title: 'especialidades',
                     templateUrl: 'app/admin/especialidades.html',
                     settings: {
-                        nav: 4,
+                        nav: 6,
                         content: '<i class="icon-lock"></i> especialidades',
                         rol: ['admin']
                     }
@@ -80,7 +91,7 @@
                     title: 'roles',
                     templateUrl: 'app/admin/roles.html',
                     settings: {
-                        nav: 5,
+                        nav: 7,
                         content: '<i class="icon-lock"></i> roles',
                         rol: ['admin']
                     }
@@ -91,7 +102,7 @@
                     title: 'usuarios',
                     templateUrl: 'app/admin/usuarios.html',
                     settings: {
-                        nav: 6,
+                        nav: 8,
                         content: '<i class="icon-lock"></i> usuarios',
                         rol: ['admin']
                     }
@@ -102,7 +113,7 @@
                     title: 'planeacion',
                     templateUrl: 'app/fuerzaVentas/planeacion.html',
                     settings: {
-                        nav: 6,
+                        nav: 9,
                         content: '<i class="icon-lock"></i> planeacion',
                         rol: ['admin']
                     }
@@ -113,19 +124,8 @@
                     title: 'registro',
                     templateUrl: 'app/fuerzaVentas/visitaRealizada.html',
                     settings: {
-                        nav: 7,
+                        nav: 10,
                         content: '<i class="icon-lock"></i> registro',
-                        rol: ['admin']
-                    }
-                }
-            },{
-                url: '/actividadJustificada',
-                config: {
-                    title: 'registro',
-                    templateUrl: 'app/admin/actividadJustificada.html',
-                    settings: {
-                        nav: 7,
-                        content: '<i class="icon-lock"></i> Actividad Justificada',
                         rol: ['admin']
                     }
                 }

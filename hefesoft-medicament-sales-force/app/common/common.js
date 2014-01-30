@@ -57,9 +57,22 @@
 
         function activateController(promises, controllerId) {
             return $q.all(promises).then(function (eventArgs) {
-                var data = { controllerId: controllerId };
+                limpiarVariablesEventos();
+                var data = { controllerId: controllerId };                
                 $broadcast(commonConfig.config.controllerActivateSuccessEvent, data);
             });
+        }
+
+        function limpiarVariablesEventos() {
+            fechaCalculoPlanear: null;
+            try {
+                document.removeEventListener("VisitasPlaneadasCargadas", visitasPlaneadasCargadas, false);
+                document.removeEventListener("contactoAgregado", visitasPlaneadasCargadas, false);
+                document.removeEventListener("actividadJustificadaAgregada", visitasPlaneadasCargadas, false);
+            }
+            catch (e) {
+
+            }
         }
 
         function $broadcast() {
@@ -158,9 +171,16 @@
             for (var i in resultado) {
                 try {
                     if (resultado[i].datosExtra.primerNombre === undefined) {
-                        resultado[i]["nombre"] = resultado[i].datosExtra.Nombre;
-                        resultado[i]["tipo"] = 2;
-                        resultado[i]["tipoNombre"] = "Farmacia";
+                        if (resultado[i].datosExtra.Nombre !== undefined) {
+                            resultado[i]["nombre"] = resultado[i].datosExtra.Nombre;
+                            resultado[i]["tipo"] = 2;
+                            resultado[i]["tipoNombre"] = "Farmacia";
+                        }
+                        else {
+                            resultado[i]["nombre"] = resultado[i].datosExtra.nombre;
+                            resultado[i]["tipo"] = 3;
+                            resultado[i]["tipoNombre"] = "Actividad Justificada";
+                        }
                     }
                     else {
                         resultado[i]["nombre"] = resultado[i].datosExtra.primerNombre + " " + resultado[i].datosExtra.primerApellido;

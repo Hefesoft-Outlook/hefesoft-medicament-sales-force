@@ -1,9 +1,9 @@
 ﻿(function () {
     'use strict';
     var controllerId = 'ctrPlaneacion';
-    angular.module('app').controller(controllerId, ['common', '$scope', 'datacontextPanel', '$http', 'spinner', ctrPlaneacion]);
+    angular.module('app').controller(controllerId, ['common', '$scope', 'datacontextPanel', '$http', ctrPlaneacion]);
 
-    function ctrPlaneacion(common, $scope, datacontextPanel, $http, spinner) {
+    function ctrPlaneacion(common, $scope, datacontextPanel, $http) {
 
         var getLogFn = common.logger.getLogFn;
         var log = getLogFn(controllerId);
@@ -99,7 +99,8 @@
                     }
                     else {
                             if (vm.filaSeleccionada[i].contactosPendientes < vm.filaSeleccionada[i].contactosCiclo) {
-                                // Actualiza el registro
+                                
+                                common.emitirEvento('mostrarBusy', "Agregando contacto");
                                 vm.planecionDataSource.updateField({ keyField: 'id', keyValue: vm.filaSeleccionada[i].id, updateField: 'contactosPendientes', updateValue: vm.filaSeleccionada[i].contactosPendientes + 1 });
 
                                 var elemento = new Object();
@@ -107,9 +108,7 @@
                                 elemento['elemento'] = vm.filaSeleccionada;
                                 elemento["accionEjecutada"] = false;
 
-                                common.emitirEvento('agregarContacto', elemento);
-
-                                spinner.spinnerShow();
+                                common.emitirEvento('agregarContacto', elemento);                             
                             }
                             else {
                                 log("Numero de contactos superados");

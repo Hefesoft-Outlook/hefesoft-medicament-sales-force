@@ -71,6 +71,7 @@
                 };
 
                 gridVisitaPlaneada.saveChanges();
+                common.emitirEvento('ocultarBusy');
             }            
         });
 

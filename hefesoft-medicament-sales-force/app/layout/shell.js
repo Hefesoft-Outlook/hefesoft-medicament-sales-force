@@ -9,7 +9,7 @@
         var vm = this;
         var logSuccess = common.logger.getLogFn(controllerId, 'success');
         var events = config.events;
-        vm.busyMessage = 'Please wait ...';
+        vm.busyMessage = 'Por favor espere ...';
         vm.isBusy = true;
         vm.spinnerOptions = {
             radius: 40,
@@ -42,5 +42,15 @@
         $rootScope.$on(events.spinnerToggle,
             function (data) { toggleSpinner(data.show); }
         );
+
+        $rootScope.$on('mostrarBusy', function (event, e) {
+            vm.busyMessage = e;
+            toggleSpinner(true);
+        });
+
+        $rootScope.$on('ocultarBusy', function (event, e) {
+            toggleSpinner(false);
+            vm.busyMessage = 'Por favor espere ...';
+        });
     };
 })();

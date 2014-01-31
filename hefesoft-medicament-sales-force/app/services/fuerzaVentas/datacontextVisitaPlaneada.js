@@ -164,10 +164,11 @@
         };
 
         function dataSourceDestroy(options) {
-            evtEliminarVisitaPlaneada.elemento = options.data;
-            item["accionEjecutada"] = false;
+            evtEliminarVisitaPlaneada.elemento = options.data;            
+
             var item = new Object();
             item.id = options.data.id;
+            item["accionEjecutada"] = false;
 
             AzureMobileClient.deleteDataAsync("tm_visita_planeada", item).then(
                 function (result) {

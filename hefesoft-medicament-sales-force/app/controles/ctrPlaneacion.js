@@ -106,6 +106,8 @@
                                 // Actualiza el registro
                                 vm.planecionDataSource.updateField({ keyField: 'id', keyValue: vm.filaSeleccionada[i].id, updateField: 'contactosPendientes', updateValue: vm.filaSeleccionada[i].contactosPendientes + 1 });
 
+                                common.emitirEvento('agregarContacto', evtContactoAgregado);
+
                                 // Aca va un evento
                                 document.dispatchEvent(evtContactoAgregado);
                                 spinner.spinnerShow();

@@ -31,12 +31,12 @@
 
                     // Inicializa los elementos para el panel visistado lo muevo a una funcion por orden                    
                     gridVisitaPlaneadaVisitador();
-                    dataPickerFecha();
-                    document.addEventListener("contactoAgregado", contactoAgregado, false);
+                    dataPickerFecha();                    
                 });
         }
 
-        function contactoAgregado(e) {
+        var eventoAgregarContacto = $scope.$on('agregarContacto', function (event, e) {
+
             vm.filaSeleccionada = e.elemento;
 
             spinner.spinnerHide();
@@ -72,8 +72,8 @@
                 };
 
                 gridVisitaPlaneada.saveChanges();
-            }
-        }
+            }            
+        });
 
         function cargarTemplate() {
             var $q = common.$q;

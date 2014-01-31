@@ -53,7 +53,8 @@
             timeEditor: timeEditor,
             sortNombre: sortNombre,
             eliminarControles: eliminarControles,
-            eliminarEventos: eliminarEventos
+            eliminarEventos: eliminarEventos,
+            emitirEvento : emitirEvento
         };
 
         return service;
@@ -87,6 +88,12 @@
         function $broadcast() {
             return $rootScope.$broadcast.apply($rootScope, arguments);
         }
+
+        function emitirEvento(nombre, datos) {
+            return $rootScope.$broadcast(nombre, datos);            
+        }
+
+        
 
         function createSearchThrottle(viewmodel, list, filteredList, filter, delay) {
             // custom delay or use default

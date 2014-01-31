@@ -8,10 +8,6 @@
         var getLogFn = common.logger.getLogFn;
         var log = getLogFn(controllerId);
 
-        var evtContactoAgregado = document.createEvent("Event");
-        evtContactoAgregado.initEvent("contactoAgregado", true, true);
-        evtContactoAgregado.elemento = null;
-
         var today = new Date();
         var tomorrow = new Date();
         tomorrow.setDate(today.getDate() + 1);       
@@ -30,28 +26,30 @@
                     log('Planear visitas');
 
                     // Inicializa los elementos para el panel visistado lo muevo a una funcion por orden
-                    gridPanelVisitador();
-                    document.addEventListener("eliminarVisitaPlaneada", visitaPlaneadaEliminada, false);
-                    document.addEventListener("eliminarVisitaRealizada", visitaPlaneadaEliminada, false);
+                    gridPanelVisitador();                     
                 });
         }
 
-        function visitaPlaneadaEliminada(e) {
-            var item = e.elemento;
+        var eventoEliminarVisita = $scope.$on('eliminarVisitaPlaneada', function (event, e) {
+            var item = e;
 
-            var dataItem = vm.planecionDataSource.get(item.idPanelVisitador);
-            if (item !== undefined && item.accionEjecutada === false) {
+            if (item.idPanelVisitador !== undefined) {
+                var dataItem = vm.planecionDataSource.get(item.idPanelVisitador);
+                if (item !== undefined) {
 
-                e.elemento.accionEjecutada = true;
+                    vm.planecionDataSource.updateField({ keyField: 'id', keyValue: dataItem.id, updateField: 'contactosPendientes', updateValue: dataItem.contactosPendientes - 1 });
 
-                vm.planecionDataSource.updateField({ keyField: 'id', keyValue: dataItem.id, updateField: 'contactosPendientes', updateValue: dataItem.contactosPendientes - 1 });
+                    var grid = $("#gridPanelVisitador").data("kendoGrid");
+                    grid.refresh();
 
-                var grid = $("#gridPanelVisitador").data("kendoGrid");
-                grid.refresh();
-
-                datacontextPanel.actualizar(dataItem);                
+                    datacontextPanel.actualizar(dataItem);
+                }
             }
-        }
+        });
+
+        $scope.$on('exit', function (event, e) {
+            eventoEliminarVisita();
+        });
 
         function cargarTemplate() {
             var $q = common.$q;
@@ -92,8 +90,6 @@
             });
 
             $("#gridPanelVisitador").on("click", ".k-grid-agregar", function () {
-                evtContactoAgregado.elemento = vm.filaSeleccionada;
-                evtContactoAgregado.elemento["accionEjecutada"] = false;
 
                 for (var i in vm.filaSeleccionada) {
 
@@ -106,10 +102,13 @@
                                 // Actualiza el registro
                                 vm.planecionDataSource.updateField({ keyField: 'id', keyValue: vm.filaSeleccionada[i].id, updateField: 'contactosPendientes', updateValue: vm.filaSeleccionada[i].contactosPendientes + 1 });
 
-                                common.emitirEvento('agregarContacto', evtContactoAgregado);
+                                var elemento = new Object();
 
-                                // Aca va un evento
-                                document.dispatchEvent(evtContactoAgregado);
+                                elemento['elemento'] = vm.filaSeleccionada;
+                                elemento["accionEjecutada"] = false;
+
+                                common.emitirEvento('agregarContacto', elemento);
+
                                 spinner.spinnerShow();
                             }
                             else {

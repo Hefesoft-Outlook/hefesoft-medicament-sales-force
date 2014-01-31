@@ -9,12 +9,6 @@
         var $q = common.$q;      
         var item = null;
 
-        var evtEliminarVisitaPlaneada = document.createEvent("Event");
-        evtEliminarVisitaPlaneada.initEvent("eliminarVisitaPlaneada", true, true);        
-        evtEliminarVisitaPlaneada.elemento = null;
-            
-
-
         var dataSource = new kendo.data.DataSource({
             transport: {
                 read: function (options) { dataSourceRead(options); },
@@ -164,16 +158,14 @@
         };
 
         function dataSourceDestroy(options) {
-            evtEliminarVisitaPlaneada.elemento = options.data;            
-
+            var elemento = options.data;
             var item = new Object();
             item.id = options.data.id;
-            item["accionEjecutada"] = false;
-
+            
             AzureMobileClient.deleteDataAsync("tm_visita_planeada", item).then(
                 function (result) {
                     options.success(item.id);
-                    document.dispatchEvent(evtEliminarVisitaPlaneada);
+                    common.emitirEvento('eliminarVisitaPlaneada', elemento);
                 },
                 function (err) {
                     options.error();

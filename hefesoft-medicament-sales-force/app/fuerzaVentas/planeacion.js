@@ -7,8 +7,7 @@
         var getLogFn = common.logger.getLogFn;
         var log = getLogFn(controllerId);
         common.fechaCalculoPlanear = null;
-        common.eliminarControles();
-        common.eliminarEventos();
+        common.eliminarControles();        
 
         var today = new Date();
         var tomorrow = new Date();
@@ -73,6 +72,10 @@
 
                 gridVisitaPlaneada.saveChanges();
             }            
+        });
+
+        $scope.$on('exit', function (event, e) {            
+            eventoAgregarContacto();
         });
 
         function cargarTemplate() {

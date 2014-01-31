@@ -7,15 +7,7 @@
 
     function datacontextVisitaRealizada(common, AzureMobileClient) {
         var $q = common.$q;      
-        var item = null;
-
-        var evtVisitasPlaneadasCargadas = document.createEvent("Event");
-        evtVisitasPlaneadasCargadas.initEvent("VisitasPlaneadasCargadas", true, true);        
-        evtVisitasPlaneadasCargadas.elemento = null;
-
-        var evtEliminarVisitaRealizada = document.createEvent("Event");
-        evtEliminarVisitaRealizada.initEvent("eliminarVisitaRealizada", true, true);
-        evtEliminarVisitaRealizada.elemento = null;
+        var item = null;        
 
         var dataSource = new kendo.data.DataSource({
             transport: {
@@ -98,7 +90,7 @@
             getVisitaRealizada(options).then(
                         function (result) {                            
                             options.success(result);
-                            document.dispatchEvent(evtVisitasPlaneadasCargadas);
+                            common.emitirEvento('visitasRealizadasCargadas', options.data);
                         },
                         function (error) {
                             options.error(error);
@@ -144,8 +136,8 @@
                     options.success(item.id);
                     item.idPanelVisitador = options.data.idPanelVisitador;
                     item["accionEjecutada"] = false;
-                    evtEliminarVisitaRealizada.elemento = item;
-                    document.dispatchEvent(evtEliminarVisitaRealizada);
+                    var elemento = item;                    
+                    common.emitirEvento('eliminarVisitaPlaneada', elemento);
                 },
                 function (err) {
                     options.error();

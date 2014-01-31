@@ -8,8 +8,6 @@
         var log = getLogFn(controllerId);
 
         common.fechaCalculoPlanear = null;
-        common.eliminarEventos();
-
         var win = null;
         var winActividadJustificada = null;
         
@@ -50,35 +48,31 @@
                         title: "Actividades Justificadas",
                         visible: false,
                         width: "600px"
-                    }).data("kendoWindow");
-
-                    document.addEventListener("contactoAgregado", contactoAgregado, false);
-                    document.addEventListener("actividadJustificadaAgregada", actividadJustificadaAgregada, false);
+                    }).data("kendoWindow");                    
 
                     log('Registro visitas');
                 });
         }
 
-        function actividadJustificadaAgregada(e) {
-            
-            if (e.elemento.accionEjecutada === false) {
-                e.elemento.accionEjecutada = true;
+        var eventoActividadJustificada = $scope.$on('actividadJustificadaAgregada', function (event, e) {
+
+            if (e.accionEjecutada === false) {
+                e.accionEjecutada = true;
                 var datosExtra = JSON.stringify(e.elemento);
 
-                datacontextVisitaRealizada.visitaRealizadaDataSource.insert({ nombre: e.elemento.nombre, idUsuario: common.Usuario_Logueado.idAntiguo, idCiclo: common.ciclo, fecha: new Date(), idActividadJustificada: e.elemento.id, esActividadJustificada: true, datosExtra: datosExtra });
+                datacontextVisitaRealizada.visitaRealizadaDataSource.insert({ nombre: e.nombre, idUsuario: common.Usuario_Logueado.idAntiguo, idCiclo: common.ciclo, fecha: new Date(), idActividadJustificada: e.id, esActividadJustificada: true, datosExtra: datosExtra });
 
                 var grid = $("#gridRegistroVisita").data("kendoGrid");
                 grid.saveChanges();
             }
-        }
+        });
 
-
-        function contactoAgregado(e) {
+        var eventoAgregarContacto = $scope.$on('agregarContacto', function (event, e) {
 
             spinner.spinnerHide();
 
-            if (e.elemento.accionEjecutada === false) {
-                e.elemento.accionEjecutada = true;
+            if (e.accionEjecutada === false) {
+                e.accionEjecutada = true;
                 vm.filaSeleccionada = e.elemento[0];
                 var grid = $("#gridRegistroVisita").data("kendoGrid");
 
@@ -96,19 +90,24 @@
                     grid.saveChanges();
                 }
             }
-        }
+        });
 
-
-        function visitasPlaneadasCargadas() {
-            document.removeEventListener("VisitasPlaneadasCargadas", visitasPlaneadasCargadas, false);
+        var eventoVisitasPlaneadasCargadas = $scope.$on('visitasRealizadasCargadas', function (event, e) {
             datacontextVisitaPlaneada.getVisitaPlaneadasDia().then(
-                            function (result) {
-                                if (datacontextVisitaRealizada.visitaRealizadaDataSource._data.length === 0) {
-                                    insertarRegistroDataSource(result);
-                                }
-                            }
-                        );
-        };
+                function (result) {
+                    if (datacontextVisitaRealizada.visitaRealizadaDataSource._data.length === 0) {
+                        insertarRegistroDataSource(result);
+                    }
+                }
+            );
+        });
+
+        $scope.$on('exit', function (event, e) {
+            eventoAgregarContacto();
+            eventoActividadJustificada();
+            eventoVisitasPlaneadasCargadas();
+        });
+        
 
         function insertarRegistroDataSource(result) {
             var resultado = new Array();
@@ -151,9 +150,6 @@
                 selectable: "row",
                 height: 600
             });
-
-            document.addEventListener("VisitasPlaneadasCargadas", visitasPlaneadasCargadas, false);
         }
-
     }
 })();

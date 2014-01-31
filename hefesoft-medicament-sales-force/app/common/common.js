@@ -52,19 +52,27 @@
             mapearNombres: mapearNombres,
             timeEditor: timeEditor,
             sortNombre: sortNombre,
-            eliminarControles: eliminarControles,
-            eliminarEventos: eliminarEventos,
+            eliminarControles: eliminarControles,            
             emitirEvento : emitirEvento
         };
+
+        exit();
 
         return service;
 
         function activateController(promises, controllerId) {
             return $q.all(promises).then(function (eventArgs) {                
-                var data = { controllerId: controllerId };                
+                var data = { controllerId: controllerId };
                 $broadcast(commonConfig.config.controllerActivateSuccessEvent, data);
             });
-        }       
+        }
+
+        
+        function exit() {
+            $rootScope.$on('$routeChangeStart', function (next, current) {
+                emitirEvento('exit', current);
+            });
+        }
 
         function eliminarControles() {
             try {
@@ -73,15 +81,6 @@
             } catch (e) {
 
             }
-        }
-
-
-        function eliminarEventos() {
-            try { document.removeEventListener("eliminarVisitaPlaneada", visitaPlaneadaEliminada, false); } catch (e) { };
-            try { document.removeEventListener("eliminarVisitaRealizada", visitaPlaneadaEliminada, false); } catch (e) { };
-            try { document.removeEventListener("VisitasPlaneadasCargadas", visitasPlaneadasCargadas, false); } catch (e) { };
-            try { document.removeEventListener("contactoAgregado", visitasPlaneadasCargadas, false); } catch (e) { };
-            try { document.removeEventListener("actividadJustificadaAgregada", visitasPlaneadasCargadas, false); } catch (e) { };            
         }
 
 
@@ -175,7 +174,12 @@
                 try {
                     // Revizarlo
                     while (!(resultado[i].datosExtra instanceof Array)) {
-                        resultado[i].datosExtra = JSON.parse(resultado[i].datosExtra);
+                        if (resultado[i].datosExtra !== undefined && resultado[i].datosExtra !== null) {
+                            resultado[i].datosExtra = JSON.parse(resultado[i].datosExtra);
+                        }
+                        else {
+                            break;
+                        }
                     }
                 } catch (e) {
 

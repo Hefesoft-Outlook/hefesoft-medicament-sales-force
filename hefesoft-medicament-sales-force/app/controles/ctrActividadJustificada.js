@@ -7,10 +7,6 @@
         var getLogFn = common.logger.getLogFn;
         var log = getLogFn(controllerId);
 
-        var evtActividadJustificadaAgregada = document.createEvent("Event");
-        evtActividadJustificadaAgregada.initEvent("actividadJustificadaAgregada", true, true);
-        evtActividadJustificadaAgregada.elemento = null;
-
         var vm = this;
         vm.title = 'Actividad Justificada';
         vm.filaSeleccionada = null;
@@ -35,10 +31,9 @@
         function showDetails(e) {
             e.preventDefault();
             var dataItem = this.dataItem($(e.currentTarget).closest("tr"));
-            dataItem["accionEjecutada"] = false;
-            evtActividadJustificadaAgregada.elemento = dataItem;
+            dataItem["accionEjecutada"] = false;            
 
-            document.dispatchEvent(evtActividadJustificadaAgregada);
+            common.emitirEvento('actividadJustificadaAgregada', dataItem);
         }
     }
 })();

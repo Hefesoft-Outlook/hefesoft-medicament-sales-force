@@ -29,7 +29,7 @@
                         IdProductoUnidadMedida: { type: "numeric", validation: { required: false } },
                         IdProductoPresentacionComercial: { type: "numeric", validation: { required: false } },
                         IdProductoInformacionAdicional: { type: "numeric", validation: { required: false } },
-                        IdLinea: { type: "numeric", validation: { required: false } },
+                        //IdLinea: { type: "numeric", validation: { required: false } },
                         IdPais: { type: "numeric", validation: { required: false } },
                     }
                 }

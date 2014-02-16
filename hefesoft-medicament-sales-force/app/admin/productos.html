@@ -1,0 +1,107 @@
+﻿<section class="mainbar" data-ng-controller="productos as vm">
+    <section class="matter">
+        <div class="container-fluid">
+            <div class="row-fluid">
+                
+                <div class="widget wviolet">
+                    <div data-cc-widget-header title="Producto Marca"></div>
+                    <div class="widget-content user">
+                        <div class="demo-section">
+                            <div id="grid" kendo-grid k-data-source="vm.marcasDataSource"
+                                 k-options="{{vm.gridOpts}}">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="widget-foot">
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+
+                <div class="widget wviolet">
+                    <div data-cc-widget-header title="Producto Campo"></div>
+                    <div class="widget-content user">
+                        <div class="demo-section">
+                            <div id="grid" kendo-grid k-data-source="vm.campoDataSource"
+                                 k-options="{{vm.gridOpts}}">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="widget-foot">
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+
+                <div class="widget wviolet">
+                    <div data-cc-widget-header title="Producto Principio Activo"></div>
+                    <div class="widget-content user">
+                        <div class="demo-section">
+                            <div id="grid" kendo-grid k-data-source="vm.principioActivoDataSource"
+                                 k-options="{{vm.gridOpts}}">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="widget-foot">
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+
+                <div class="widget wviolet">
+                    <div data-cc-widget-header title="Forma farmaceutica"></div>
+                    <div class="widget-content user">
+                        <div class="demo-section">
+                            <div id="grid" kendo-grid k-data-source="vm.formaFarmaceuticaDataSource"
+                                 k-options="{{vm.gridOpts}}">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="widget-foot">
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+
+                <div class="widget wviolet">
+                    <div data-cc-widget-header title="Producto unidad de medida"></div>
+                    <div class="widget-content user">
+                        <div class="demo-section">
+                            <div id="grid" kendo-grid k-data-source="vm.productoUnidadMedidaDataSource"
+                                 k-options="{{vm.gridOpts}}">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="widget-foot">
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+
+                <div class="widget wviolet">
+                    <div data-cc-widget-header title="Producto presentacion comercial"></div>
+                    <div class="widget-content user">
+                        <div class="demo-section">
+                            <div id="grid" kendo-grid k-data-source="vm.productoPresentacionComercialDataSource"
+                                 k-options="{{vm.gridOpts}}">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="widget-foot">
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+
+                <div class="widget wviolet">
+                    <div data-cc-widget-header title="Producto informacion adicional"></div>
+                    <div class="widget-content user">
+                        <div class="demo-section">
+                            <div id="grid" kendo-grid k-data-source="vm.productoInformacionAdicionalDataSource"
+                                 k-options="{{vm.gridOpts}}">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="widget-foot">
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+</section>

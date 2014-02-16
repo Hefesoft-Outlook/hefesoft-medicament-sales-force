@@ -102,9 +102,9 @@
     <Content Include="app\layout\widgetheader.html" />
     <Content Include="app\services\admin\datacontextProductoInformacionAdicional.js" />
     <Content Include="app\services\admin\datacontextProductoPresentacionComercial.js" />
+    <Content Include="app\services\admin\datacontextProductoPrincipioActivo.js" />
     <Content Include="app\services\admin\datacontextProductoUnidadMedida.js" />
     <Content Include="app\services\admin\datacontextProductoFormaFarmaceutica.js" />
-    <Content Include="app\services\admin\datacontextProductoPrincipioActivo.js" />
     <Content Include="app\services\admin\datacontextProductoCampo.js" />
     <Content Include="app\services\admin\datacontextProductoMarca.js" />
     <Content Include="app\services\admin\datacontextActividadJustificada.js" />

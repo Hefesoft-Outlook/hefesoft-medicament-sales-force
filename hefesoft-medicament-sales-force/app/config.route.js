@@ -96,13 +96,24 @@
                         rol: ['admin']
                     }
                 }
-            },{
+            }, {
+                url: '/lineas',
+                config: {
+                    title: 'lineas',
+                    templateUrl: 'app/admin/lineas.html',
+                    settings: {
+                        nav: 8,
+                        content: '<i class="icon-lock"></i> lineas',
+                        rol: ['admin']
+                    }
+                }
+            } , {
                 url: '/roles',
                 config: {
                     title: 'roles',
                     templateUrl: 'app/admin/roles.html',
                     settings: {
-                        nav: 8,
+                        nav: 9,
                         content: '<i class="icon-lock"></i> roles',
                         rol: ['admin']
                     }
@@ -113,8 +124,19 @@
                     title: 'usuarios',
                     templateUrl: 'app/admin/usuarios.html',
                     settings: {
-                        nav: 9,
+                        nav: 10,
                         content: '<i class="icon-lock"></i> usuarios',
+                        rol: ['admin']
+                    }
+                }
+            }, {
+                url: '/pais',
+                config: {
+                    title: 'pais',
+                    templateUrl: 'app/admin/pais.html',
+                    settings: {
+                        nav: 11,
+                        content: '<i class="icon-lock"></i> pais',
                         rol: ['admin']
                     }
                 }
@@ -124,7 +146,7 @@
                     title: 'planeacion',
                     templateUrl: 'app/fuerzaVentas/planeacion.html',
                     settings: {
-                        nav: 10,
+                        nav: 12,
                         content: '<i class="icon-lock"></i> planeacion',
                         rol: ['admin']
                     }
@@ -135,7 +157,7 @@
                     title: 'registro',
                     templateUrl: 'app/fuerzaVentas/visitaRealizada.html',
                     settings: {
-                        nav: 11,
+                        nav: 13,
                         content: '<i class="icon-lock"></i> registro',
                         rol: ['admin']
                     }

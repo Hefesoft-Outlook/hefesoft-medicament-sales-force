@@ -61,10 +61,10 @@
     <Content Include="app\admin\admin.js" />
     <Content Include="app\admin\actividadJustificada.html" />
     <Content Include="app\admin\actividadJustificada.js" />
-    <Content Include="app\admin\pais.html" />
-    <Content Include="app\admin\pais.js" />
     <Content Include="app\admin\lineas.html" />
     <Content Include="app\admin\lineas.js" />
+    <Content Include="app\admin\pais.html" />
+    <Content Include="app\admin\pais.js" />
     <Content Include="app\admin\productos.html" />
     <Content Include="app\admin\productos.js" />
     <Content Include="app\admin\farmacias.js" />

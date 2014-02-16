@@ -58,15 +58,15 @@
             { field: "nombre", title: "Nombre" },
             { field: "MercadoRelevante", title: "Mercado Relevante" },
             { field: "Alias", title: "Alias" },
-            { field: "IdProductoMarca", title: "Marca" },
-            { field: "IdProductoCampo", title: "Campo" },
-            { field: "IdProductoPrincipioActivo", title: "Principio activo" },
-            { field: "IdProductoFormaFarmaceutica", title: "Forma Farmaceutica" },
-            { field: "IdProductoUnidadMedida", title: "Unidad de medida" },
-            { field: "IdProductoPresentacionComercial", title: "Presentacion comercial" },
-            { field: "IdProductoInformacionAdicional", title: "Informacion adicional" },
+            { field: "IdProductoMarca", title: "Marca", hidden: true },
+            { field: "IdProductoCampo", title: "Campo", hidden: true },
+            { field: "IdProductoPrincipioActivo", title: "Principio activo", hidden: true },
+            { field: "IdProductoFormaFarmaceutica", title: "Forma Farmaceutica", hidden: true },
+            { field: "IdProductoUnidadMedida", title: "Unidad de medida", hidden: true },
+            { field: "IdProductoPresentacionComercial", title: "Presentacion comercial", hidden: true },
+            { field: "IdProductoInformacionAdicional", title: "Informacion adicional", hidden: true },
             //{ field: "IdLinea", title: "Linea" },
-            { field: "IdPais", title: "Pais" },
+            { field: "IdPais", title: "Pais", hidden: true },
             { command: ["edit", "destroy"] }
         ];
 
@@ -160,7 +160,7 @@
         };
 
         function DropDownMarca(container, options) {
-            $('<input required data-text-field="nombre" data-value-field="IdProductoMarca" data-bind="value:' + options.field + '"/>')
+            $('<input required data-text-field="nombre" data-value-field="id" data-bind="value:' + options.field + '"/>')
                 .appendTo(container)
                 .kendoDropDownList({
                     autoBind: false,
@@ -169,7 +169,7 @@
         };
 
         function DropDownCampo(container, options) {
-            $('<input required data-text-field="nombre" data-value-field="IdProductoCampo" data-bind="value:' + options.field + '"/>')
+            $('<input required data-text-field="nombre" data-value-field="id" data-bind="value:' + options.field + '"/>')
                 .appendTo(container)
                 .kendoDropDownList({
                     autoBind: false,
@@ -178,7 +178,7 @@
         };
 
         function DropDownPrincipioActivo(container, options) {
-            $('<input required data-text-field="nombre" data-value-field="IdProductoPrincipioActivo" data-bind="value:' + options.field + '"/>')
+            $('<input required data-text-field="nombre" data-value-field="id" data-bind="value:' + options.field + '"/>')
                 .appendTo(container)
                 .kendoDropDownList({
                     autoBind: false,
@@ -187,7 +187,7 @@
         };
 
         function DropDownFormaFarmaceutica(container, options) {
-            $('<input required data-text-field="nombre" data-value-field="IdProductoFormaFarmaceutica" data-bind="value:' + options.field + '"/>')
+            $('<input required data-text-field="nombre" data-value-field="id" data-bind="value:' + options.field + '"/>')
                 .appendTo(container)
                 .kendoDropDownList({
                     autoBind: false,
@@ -196,7 +196,7 @@
         };
         
         function DropDownUnidadMedida(container, options) {
-            $('<input required data-text-field="nombre" data-value-field="IdProductoUnidadMedida" data-bind="value:' + options.field + '"/>')
+            $('<input required data-text-field="nombre" data-value-field="id" data-bind="value:' + options.field + '"/>')
                 .appendTo(container)
                 .kendoDropDownList({
                     autoBind: false,
@@ -205,7 +205,7 @@
         };
         
         function DropDownPresentacionComercial(container, options) {
-            $('<input required data-text-field="nombre" data-value-field="IdProductoPresentacionComercial" data-bind="value:' + options.field + '"/>')
+            $('<input required data-text-field="nombre" data-value-field="id" data-bind="value:' + options.field + '"/>')
                 .appendTo(container)
                 .kendoDropDownList({
                     autoBind: false,
@@ -214,7 +214,7 @@
         };
 
         function DropDownInformacionAdicional(container, options) {
-            $('<input required data-text-field="nombre" data-value-field="IdProductoInformacionAdicional" data-bind="value:' + options.field + '"/>')
+            $('<input required data-text-field="nombre" data-value-field="id" data-bind="value:' + options.field + '"/>')
                 .appendTo(container)
                 .kendoDropDownList({
                     autoBind: false,
@@ -223,7 +223,7 @@
         };
         
         //function DropDownLinea(container, options) {
-        //    $('<input required data-text-field="nombre" data-value-field="IdLinea" data-bind="value:' + options.field + '"/>')
+        //    $('<input required data-text-field="nombre" data-value-field="id" data-bind="value:' + options.field + '"/>')
         //        .appendTo(container)
         //        .kendoDropDownList({
         //            autoBind: false,
@@ -232,7 +232,7 @@
         //};
         
         function DropDownPais(container, options) {
-            $('<input required data-text-field="nombre" data-value-field="IdPais" data-bind="value:' + options.field + '"/>')
+            $('<input required data-text-field="nombre" data-value-field="id" data-bind="value:' + options.field + '"/>')
                 .appendTo(container)
                 .kendoDropDownList({
                     autoBind: false,

@@ -61,6 +61,8 @@
     <Content Include="app\admin\admin.js" />
     <Content Include="app\admin\actividadJustificada.html" />
     <Content Include="app\admin\actividadJustificada.js" />
+    <Content Include="app\admin\productos.html" />
+    <Content Include="app\admin\productos.js" />
     <Content Include="app\admin\farmacias.js" />
     <Content Include="app\admin\medicos.js" />
     <Content Include="app\admin\roles.js" />
@@ -98,6 +100,13 @@
     <Content Include="app\layout\topnav.html" />
     <Content Include="app\layout\topnav.js" />
     <Content Include="app\layout\widgetheader.html" />
+    <Content Include="app\services\admin\datacontextProductoInformacionAdicional.js" />
+    <Content Include="app\services\admin\datacontextProductoPresentacionComercial.js" />
+    <Content Include="app\services\admin\datacontextProductoUnidadMedida.js" />
+    <Content Include="app\services\admin\datacontextProductoFormaFarmaceutica.js" />
+    <Content Include="app\services\admin\datacontextProductoPrincipioActivo.js" />
+    <Content Include="app\services\admin\datacontextProductoCampo.js" />
+    <Content Include="app\services\admin\datacontextProductoMarca.js" />
     <Content Include="app\services\admin\datacontextActividadJustificada.js" />
     <Content Include="app\services\admin\datacontextRoles.js" />
     <Content Include="app\services\admin\datacontextUnidadVisita.js" />
